@@ -1,0 +1,2 @@
+{"phase": "first1pg2", "acked": 826, "gave_up": 213, "failed_attempts": 12119, "throughput_per_s": 13.8, "p50_ms": 10.8, "p95_ms": 78.3, "p99_ms": 1056.1, "max_ms": 1529.2, "slow_over_4s": 0}
+{"phase": "any1pg2pg3", "acked": 1201, "gave_up": 0, "failed_attempts": 0, "throughput_per_s": 20.0, "p50_ms": 11.0, "p95_ms": 23.1, "p99_ms": 36.4, "max_ms": 92.1, "slow_over_4s": 0}

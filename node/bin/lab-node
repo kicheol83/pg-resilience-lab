@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+set -euo pipefail
+. /usr/local/bin/lab-ops.sh
+
+cmd="${1:-status}"
+shift || true
+case "$cmd" in
+    role)
+        local_role
+        ;;
+    status)
+        curl_out="$(printf 'GET /health HTTP/1.0\r\n\r\n' | socat -T 3 - TCP:127.0.0.1:8008 2>/dev/null | tail -n 1 || true)"
+        echo "${curl_out:-{\"node\":\"$NODE_NAME\",\"role\":\"down\"}}"
+        ;;
+    start)
+        pg_start
+        ;;
+    stop)
+        pg_stop "${1:-fast}"
+        ;;
+    kill-postmaster)
+        pid="$(head -n 1 "$PGDATA/postmaster.pid")"
+        record_event "kill_9_postmaster_$pid"
+        kill -9 "$pid"
+        ;;
+    rejoin)
+        primary="${1:-$(find_primary "$NODE_NAME" || true)}"
+        [ -n "$primary" ] || { log "no primary found"; exit 1; }
+        touch /run/repmgr/stop
+        pkill -TERM -x repmgrd 2>/dev/null || true
+        rejoin_to "$primary"
+        rm -f /run/repmgr/stop
+        ;;
+    rebuild)
+        primary=""
+        while [ $# -gt 0 ]; do
+            case "$1" in
+                --waldir) export PG_WAL_DIR="$2"; shift 2 ;;
+                *) primary="$1"; shift ;;
+            esac
+        done
+        [ -n "$primary" ] || primary="$(find_primary "$NODE_NAME" || true)"
+        [ -n "$primary" ] || { log "no primary found"; exit 1; }
+        touch /run/repmgr/stop
+        pkill -TERM -x repmgrd 2>/dev/null || true
+        pg_stop immediate
+        clone_from "$primary"
+        touch "$LAB_MARKER"
+        rm -f /run/repmgr/stop
+        ;;
+    pause-repmgrd)
+        touch /run/repmgr/stop
+        pkill -TERM -x repmgrd 2>/dev/null || true
+        ;;
+    resume-repmgrd)
+        rm -f /run/repmgr/stop
+        ;;
+    fence)
+        /usr/local/bin/fence-self
+        ;;
+    unfence)
+        /usr/local/bin/unfence-self
+        ;;
+    repmgr)
+        repmgr_cmd "$@"
+        ;;
+    psql)
+        local_psql "$@"
+        ;;
+    *)
+        echo "usage: lab-node {role|status|start|stop|kill-postmaster|rejoin|rebuild|pause-repmgrd|resume-repmgrd|fence|unfence|repmgr|psql}" >&2
+        exit 2
+        ;;
+esac

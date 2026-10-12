@@ -1,0 +1,5 @@
+{"phase": "off", "acked": 1801, "gave_up": 0, "failed_attempts": 0, "throughput_per_s": 30.0, "p50_ms": 8.8, "p95_ms": 17.8, "p99_ms": 28.3, "max_ms": 89.5, "slow_over_4s": 0}
+{"phase": "local", "acked": 1801, "gave_up": 0, "failed_attempts": 0, "throughput_per_s": 30.0, "p50_ms": 9.4, "p95_ms": 18.5, "p99_ms": 28.3, "max_ms": 60.9, "slow_over_4s": 0}
+{"phase": "remote_write", "acked": 1801, "gave_up": 0, "failed_attempts": 0, "throughput_per_s": 30.0, "p50_ms": 9.6, "p95_ms": 20.8, "p99_ms": 35.0, "max_ms": 88.1, "slow_over_4s": 0}
+{"phase": "on", "acked": 1801, "gave_up": 0, "failed_attempts": 0, "throughput_per_s": 30.0, "p50_ms": 10.2, "p95_ms": 20.8, "p99_ms": 31.7, "max_ms": 146.0, "slow_over_4s": 0}
+{"phase": "remote_apply", "acked": 1801, "gave_up": 0, "failed_attempts": 0, "throughput_per_s": 30.0, "p50_ms": 10.0, "p95_ms": 20.3, "p99_ms": 30.9, "max_ms": 120.9, "slow_over_4s": 0}
