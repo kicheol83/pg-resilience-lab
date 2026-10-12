@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+
+compose() {
+    local files=(-f compose.yaml)
+    if [ -n "${LAB_COMPOSE_FILES:-}" ]; then
+        IFS=':' read -r -a extra <<< "$LAB_COMPOSE_FILES"
+        for f in "${extra[@]}"; do files+=(-f "$f"); done
+    fi
+    docker compose "${files[@]}" "$@"
+}
+
+gen_password() {
+    printf 'Lab%s-7x' "$(LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 24)"
+}
+
+cmd_init() {
+    if [ -f .env ]; then
+        echo ".env already exists; delete it to generate new passwords"
+        return
+    fi
+    {
+        for k in REPMGR_PASSWORD LEDGER_OWNER_PASSWORD LEDGER_APP_PASSWORD LEDGER_RO_PASSWORD PGMONITOR_PASSWORD; do
+            echo "$k=$(gen_password)"
+        done
+    } > .env
+    chmod 600 .env
+    echo "wrote .env with random passwords"
+}
+
+cmd_up() {
+    [ -f .env ] || cmd_init
+    compose --profile tools --profile upgrade build
+    compose up -d certs pg1 pg2 pg3 witness backup haproxy redis migrate api
+    compose run --rm runner post-up
+}
+
+case "${1:-help}" in
+    init) cmd_init ;;
+    up) cmd_up ;;
+    down) compose down ;;
+    reset) compose --profile upgrade down -v --remove-orphans; cmd_up ;;
+    upgrade-node) compose --profile upgrade up -d pg18 ;;
+    logs) shift; compose logs -f --tail 100 "$@" ;;
+    ps) compose ps ;;
+    help|-h|--help)
+        echo "usage: ./lab {init|up|down|reset|ps|logs [svc]|upgrade-node|<runner command>}"
+        compose run --rm runner help
+        ;;
+    *) compose run --rm runner "$@" ;;
+esac

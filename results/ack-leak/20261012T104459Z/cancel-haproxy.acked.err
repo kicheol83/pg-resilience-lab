@@ -1,0 +1,490 @@
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+WARNING:  canceling wait for synchronous replication due to user request
+DETAIL:  The transaction has already committed locally, but might not have been replicated to the standby.
+SSL SYSCALL error: EOF detected
+connection to server was lost
+SSL SYSCALL error: EOF detected
+connection to server was lost
+SSL SYSCALL error: EOF detected
+connection to server was lost
+SSL SYSCALL error: EOF detected
+connection to server was lost
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql: error: connection to server at "haproxy" (172.30.2.2), port 5000 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.

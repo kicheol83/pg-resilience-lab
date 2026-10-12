@@ -1,0 +1,8 @@
+1791801908.669,timeout-only:partition_pg1_from_replicas
+1791801928.994,timeout-only:partition_healed
+1791801969.129,cancel-direct:partition_pg1_from_replicas
+1791801989.568,cancel-direct:partition_healed
+1791802031.391,cancel-haproxy:partition_pg1_from_replicas
+1791802052.041,cancel-haproxy:partition_healed
+1791802094.997,terminate-haproxy:partition_pg1_from_replicas
+1791802115.586,terminate-haproxy:partition_healed
