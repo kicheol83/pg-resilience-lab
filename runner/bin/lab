@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+set -euo pipefail
+. /lab/runner/lib/common.sh
+. /lab/runner/lib/cluster.sh
+. /lab/runner/lib/scenario.sh
+
+usage() {
+    cat <<'EOF'
+lab <command>
+
+  status                         cluster, HAProxy, backups and API at a glance
+  wait-healthy [seconds]         block until 1 primary + 2 streaming replicas + API writes
+  post-up                        one-time setup after the stack starts (maintenance jobs, first checks)
+  baseline                       heal every node and switch back to pg1 as primary
+  scenario <id|all> [runs]       run fault scenarios, e.g. scenario 01 3
+  experiment <name>              sync-commit | sync-standby-loss
+  backup <full|diff|incr|info|check|verify>
+  security                       negative and positive access tests
+  maintenance <install|bloat|wraparound|repack|vacuum-report>
+  upgrade <check|pg-upgrade|logical>
+  report                         rebuild results/SUMMARY.md
+  shell                          interactive shell inside the runner
+EOF
+}
+
+find_scenario() {
+    local id="$1" f
+    for f in /lab/scenarios/*.sh; do
+        case "$(basename "$f")" in
+            "$id"*.sh) echo "$f"; return 0 ;;
+        esac
+    done
+    return 1
+}
+
+cmd_status() {
+    echo "== nodes"
+    local n
+    for n in $DATA_NODES; do
+        printf '%-4s %s\n' "$n" "$(agent_json "$n")"
+    done
+    echo
+    echo "== repmgr"
+    repmgr_show || echo "repmgr metadata unavailable"
+    echo
+    echo "== haproxy"
+    echo "rw: $(haproxy_backend_state pg_primary)"
+    echo "ro: $(haproxy_backend_state pg_replicas)"
+    echo
+    echo "== replication (from primary)"
+    local p
+    p="$(current_primary || true)"
+    if [ -n "$p" ]; then
+        nexec "$p" lab-node psql -d postgres -c "select application_name, state, sync_state, pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(), replay_lsn)) as replay_lag, coalesce(replay_lag::text, '-') as replay_delay from pg_stat_replication order by 1"
+    else
+        echo "no primary visible"
+    fi
+    echo
+    echo "== backups"
+    nexec backup gosu postgres pgbackrest --stanza=ledger info 2>/dev/null | sed -n '1,40p' || echo "backup host unavailable"
+    echo
+    echo "== api"
+    curl -s -m 3 "$API_URL/health/ready" || echo "api not ready"
+    echo
+}
+
+cmd_post_up() {
+    wait_healthy 300 || die "stack did not become healthy"
+    /lab/maintenance/install.sh
+    say "post-up done: $(cluster_state_line)"
+}
+
+cmd_scenario() {
+    local id="${1:?scenario id}" runs="${2:-1}" f
+    mkdir -p "$RESULTS"
+    if [ "$id" = "all" ]; then
+        for f in /lab/scenarios/[0-9]*.sh; do
+            run_scenario "$f" "$runs"
+        done
+        return
+    fi
+    f="$(find_scenario "$id")" || die "unknown scenario $id"
+    run_scenario "$f" "$runs"
+}
+
+main() {
+    local cmd="${1:-help}"
+    shift || true
+    case "$cmd" in
+        status) cmd_status ;;
+        wait-healthy) wait_healthy "${1:-180}" ;;
+        post-up) cmd_post_up ;;
+        baseline) ensure_baseline ;;
+        scenario) cmd_scenario "$@" ;;
+        experiment) /lab/experiments/"${1:?experiment name}".sh "${@:2}" ;;
+        backup) /lab/backup/backup.sh "$@" ;;
+        security) /lab/security/run.sh "$@" ;;
+        maintenance) /lab/maintenance/run.sh "$@" ;;
+        upgrade) /lab/upgrade/run.sh "$@" ;;
+        report) python3 /lab/measure/report.py "$RESULTS" ;;
+        shell) exec bash ;;
+        help|-h|--help) usage ;;
+        *) exec "$cmd" "$@" ;;
+    esac
+}
+
+main "$@"
