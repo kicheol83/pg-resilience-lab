@@ -1,0 +1,4 @@
+.env
+results/**/k6*.json
+results/**/k6*.json.gz
+results/**/acked_tx.txt
