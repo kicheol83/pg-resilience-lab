@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+. /usr/local/bin/lab-common.sh
+
+node_id="$1"
+event="$2"
+success="$3"
+ts="$4"
+details="$5"
+record_event "repmgr:$event:success=$success:node=$node_id:$details"
+case "$event" in
+    child_node_reconnect|child_node_new_connect)
+        if [ "$(local_role)" = "fenced" ] && [[ "$details" == *standby* ]]; then
+            /usr/local/bin/unfence-self
+        fi
+        ;;
+esac
+exit 0

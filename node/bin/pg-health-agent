@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+. /usr/local/bin/lab-common.sh 2>/dev/null
+
+read -r -t 2 method path _ || true
+while read -r -t 1 line; do
+    line="${line%$'\r'}"
+    [ -z "$line" ] && break
+done
+
+state="$("$(pg_bin)/psql" -h /run/postgresql -U postgres -d postgres -X -Atq -c "
+select
+  case when pg_is_in_recovery() then 'standby'
+       when current_setting('default_transaction_read_only') = 'on' then 'fenced'
+       else 'primary' end,
+  coalesce((select status from pg_stat_wal_receiver limit 1), '-'),
+  coalesce(round(extract(epoch from now() - pg_last_xact_replay_timestamp()))::text, '-'),
+  (select count(*) from pg_stat_replication where state = 'streaming'),
+  (select timeline_id from pg_control_checkpoint()),
+  case when current_setting('synchronous_standby_names') = '' then 'not_required'
+       when exists (select 1 from pg_stat_replication
+                    where state = 'streaming' and sync_state in ('sync', 'quorum')
+                      and reply_time > now() - make_interval(secs => ${QUORUM_REPLY_MAX_AGE_S:-3})) then 'ok'
+       else 'lost' end
+" 2>/dev/null)"
+
+role="${state%%|*}"
+rest="${state#*|}"
+receiver="${rest%%|*}"
+rest="${rest#*|}"
+replay_age="${rest%%|*}"
+rest="${rest#*|}"
+streaming="${rest%%|*}"
+rest="${rest#*|}"
+timeline="${rest%%|*}"
+quorum="${rest##*|}"
+[ -z "$state" ] && role="down"
+
+code=503
+case "$path" in
+    /primary)
+        [ "$role" = "primary" ] && [ "$quorum" != "lost" ] && code=200
+        ;;
+    /replica)
+        [ "$role" = "standby" ] && [ "$receiver" = "streaming" ] && code=200
+        ;;
+    /health|/)
+        [ "$role" != "down" ] && code=200
+        ;;
+esac
+
+body="{\"node\":\"$NODE_NAME\",\"role\":\"$role\",\"wal_receiver\":\"$receiver\",\"replay_age_s\":\"$replay_age\",\"streaming_children\":\"$streaming\",\"timeline\":\"$timeline\",\"sync_quorum\":\"$quorum\"}"
+reason="Service Unavailable"
+[ "$code" = "200" ] && reason="OK"
+printf 'HTTP/1.1 %s %s\r\nContent-Type: application/json\r\nContent-Length: %s\r\nConnection: close\r\n\r\n%s' \
+    "$code" "$reason" "${#body}" "$body"
