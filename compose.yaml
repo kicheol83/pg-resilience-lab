@@ -1,0 +1,291 @@
+name: pglab
+
+x-pg-build: &pg-build
+  context: .
+  dockerfile: docker/Dockerfile
+  target: pg
+  args:
+    PG_BASE_IMAGE: ${PG_BASE_IMAGE:-postgres:17-bookworm}
+    INSTALL_PG18: ${INSTALL_PG18:-true}
+
+x-pg-env: &pg-env
+  DATA_NODES: pg1 pg2 pg3
+  INITIAL_PRIMARY: pg1
+  LAB_STANZA: ledger
+  REPMGR_PASSWORD: ${REPMGR_PASSWORD:?run lab init first}
+  LEDGER_OWNER_PASSWORD: ${LEDGER_OWNER_PASSWORD:?run lab init first}
+  LEDGER_APP_PASSWORD: ${LEDGER_APP_PASSWORD:?run lab init first}
+  LEDGER_RO_PASSWORD: ${LEDGER_RO_PASSWORD:?run lab init first}
+  PGMONITOR_PASSWORD: ${PGMONITOR_PASSWORD:?run lab init first}
+
+x-pg-node: &pg-node
+  image: pglab/pg:local
+  build: *pg-build
+  restart: unless-stopped
+  stop_grace_period: 60s
+  shm_size: 256m
+  tmpfs:
+    - /pgwal-diskfull:size=192m,mode=1777
+  depends_on:
+    certs:
+      condition: service_completed_successfully
+  healthcheck:
+    test: ["CMD-SHELL", "pg_isready -h /run/postgresql -q"]
+    interval: 5s
+    timeout: 3s
+    retries: 3
+    start_period: 120s
+
+services:
+  certs:
+    image: pglab/pg:local
+    build: *pg-build
+    entrypoint: ["/usr/local/bin/lab-certs"]
+    restart: "no"
+    volumes:
+      - certs:/certs
+
+  pg1:
+    <<: *pg-node
+    container_name: pglab-pg1
+    hostname: pg1
+    extra_hosts:
+      - "pg1-db:127.0.0.1"
+    environment:
+      <<: *pg-env
+      NODE_NAME: pg1
+      NODE_ID: 1
+      NODE_ROLE: data
+      PRIORITY: 100
+    volumes:
+      - pg1_data:/var/lib/postgresql/data
+      - certs:/certs:ro
+    ports:
+      - "127.0.0.1:15431:5432"
+    networks:
+      db:
+        aliases: [pg1-db]
+      app: {}
+
+  pg2:
+    <<: *pg-node
+    container_name: pglab-pg2
+    hostname: pg2
+    extra_hosts:
+      - "pg2-db:127.0.0.1"
+    environment:
+      <<: *pg-env
+      NODE_NAME: pg2
+      NODE_ID: 2
+      NODE_ROLE: data
+      PRIORITY: 90
+    volumes:
+      - pg2_data:/var/lib/postgresql/data
+      - certs:/certs:ro
+    ports:
+      - "127.0.0.1:15432:5432"
+    networks:
+      db:
+        aliases: [pg2-db]
+      app: {}
+
+  pg3:
+    <<: *pg-node
+    container_name: pglab-pg3
+    hostname: pg3
+    extra_hosts:
+      - "pg3-db:127.0.0.1"
+    environment:
+      <<: *pg-env
+      NODE_NAME: pg3
+      NODE_ID: 3
+      NODE_ROLE: data
+      PRIORITY: 80
+    volumes:
+      - pg3_data:/var/lib/postgresql/data
+      - certs:/certs:ro
+    ports:
+      - "127.0.0.1:15433:5432"
+    networks:
+      db:
+        aliases: [pg3-db]
+      app: {}
+
+  witness:
+    <<: *pg-node
+    container_name: pglab-witness
+    hostname: witness
+    extra_hosts:
+      - "witness-db:127.0.0.1"
+    environment:
+      <<: *pg-env
+      NODE_NAME: witness
+      NODE_ID: 4
+      NODE_ROLE: witness
+      PRIORITY: 0
+    volumes:
+      - witness_data:/var/lib/postgresql/data
+      - certs:/certs:ro
+    networks:
+      db:
+        aliases: [witness-db]
+
+  pg18:
+    <<: *pg-node
+    container_name: pglab-pg18
+    hostname: pg18
+    extra_hosts:
+      - "pg18-db:127.0.0.1"
+    profiles: ["upgrade"]
+    environment:
+      <<: *pg-env
+      NODE_NAME: pg18
+      NODE_ID: 18
+      NODE_ROLE: standalone
+      STANDALONE_MAJOR: 18
+    volumes:
+      - pg18_data:/var/lib/postgresql/data
+      - certs:/certs:ro
+    networks:
+      db:
+        aliases: [pg18-db]
+      app: {}
+
+  backup:
+    image: pglab/pg:local
+    build: *pg-build
+    container_name: pglab-backup
+    hostname: backup
+    restart: unless-stopped
+    depends_on:
+      certs:
+        condition: service_completed_successfully
+    environment:
+      <<: *pg-env
+      NODE_NAME: backup
+      NODE_ROLE: backup
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_PREFIX: ${S3_PREFIX:-pg-resilience-lab}
+      S3_REGION: ${S3_REGION:-ap-northeast-2}
+      S3_ENDPOINT: ${S3_ENDPOINT:-}
+      S3_KEY: ${S3_KEY:-}
+      S3_KEY_SECRET: ${S3_KEY_SECRET:-}
+      S3_CIPHER_PASS: ${S3_CIPHER_PASS:-}
+    volumes:
+      - backup_repo:/var/lib/pgbackrest
+      - certs:/certs:ro
+    networks:
+      db:
+        aliases: [backup-db]
+
+  haproxy:
+    image: ${HAPROXY_IMAGE:-haproxy:3.0}
+    container_name: pglab-haproxy
+    hostname: haproxy
+    restart: unless-stopped
+    volumes:
+      - ./docker/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - "127.0.0.1:5000:5000"
+      - "127.0.0.1:5001:5001"
+      - "127.0.0.1:8404:8404"
+    networks:
+      app: {}
+
+  redis:
+    image: ${REDIS_IMAGE:-redis:7-alpine}
+    container_name: pglab-redis
+    restart: unless-stopped
+    networks:
+      app: {}
+
+  migrate:
+    image: pglab/ledgercore-migrate:local
+    build:
+      context: ${LEDGERCORE_GIT:-https://github.com/kicheol83/ledger_core.git#master}
+      target: migrate
+    container_name: pglab-migrate
+    restart: on-failure:30
+    depends_on:
+      pg1:
+        condition: service_healthy
+      haproxy:
+        condition: service_started
+    environment:
+      DATABASE_URL: postgresql://ledger_owner:${LEDGER_OWNER_PASSWORD}@haproxy:5000/ledgercore?sslmode=verify-full&sslrootcert=/certs/ca.crt
+    volumes:
+      - certs:/certs:ro
+    networks:
+      app: {}
+
+  api:
+    image: pglab/ledgercore-api:local
+    build:
+      context: ${LEDGERCORE_GIT:-https://github.com/kicheol83/ledger_core.git#master}
+      target: api
+    container_name: pglab-api
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      LOG_LEVEL: warn
+      DATABASE_URL: postgresql://ledger_app:${LEDGER_APP_PASSWORD}@haproxy:5000/ledgercore?sslmode=verify-full&sslrootcert=/certs/ca.crt
+      DATABASE_POOL_MAX: 20
+      DATABASE_STATEMENT_TIMEOUT_MS: ${API_STATEMENT_TIMEOUT_MS:-5000}
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - certs:/certs:ro
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      app: {}
+
+  runner:
+    image: pglab/runner:local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runner
+      args:
+        PG_BASE_IMAGE: ${PG_BASE_IMAGE:-postgres:17-bookworm}
+        INSTALL_PG18: ${INSTALL_PG18:-true}
+    profiles: ["tools"]
+    environment:
+      <<: *pg-env
+      LAB_PROJECT: pglab
+      LAB_RATE: ${LAB_RATE:-20}
+      LAB_DURATION: ${LAB_DURATION:-150s}
+      LAB_DURATION_PITR: ${LAB_DURATION_PITR:-300s}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./results:/lab/results
+      - certs:/certs:ro
+    networks:
+      db: {}
+      app: {}
+
+networks:
+  db:
+    name: pglab_db
+    ipam:
+      config:
+        - subnet: 172.30.1.0/24
+  app:
+    name: pglab_app
+    ipam:
+      config:
+        - subnet: 172.30.2.0/24
+
+volumes:
+  certs:
+  pg1_data:
+  pg2_data:
+  pg3_data:
+  witness_data:
+  pg18_data:
+  backup_repo:
