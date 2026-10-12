@@ -1,0 +1,16 @@
+# Restore verification 2026-10-12T10:58Z
+
+```json
+{
+  "at": "2026-10-12T10:58:27+00:00",
+  "backup": "20261012-104455F_20261012-105807I",
+  "restore_s": 1.8,
+  "recovery_s": 1.4,
+  "transactions": 7341,
+  "entries": 14682,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "checksum_failures": 0,
+  "ok": true
+}
+```

@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+stanza="${LAB_STANZA:-ledger}"
+work="${VERIFY_DIR:-/var/lib/pgbackrest-verify}"
+port="${VERIFY_PORT:-5499}"
+set_label="${1:-latest}"
+major="${VERIFY_PG_MAJOR:-$(pgbackrest --stanza="$stanza" info | sed -n 's/.*wal archive min\/max (\([0-9]*\)).*/\1/p' | head -n 1)}"
+bin="/usr/lib/postgresql/${major:-17}/bin"
+history=/var/log/pgbackrest/verify-history.jsonl
+
+ts() { date +%s.%3N; }
+
+mkdir -p "$work"
+find "$work" -mindepth 1 -delete
+mkdir -p "$work/pgdata" "$work/run"
+chmod 0700 "$work/pgdata"
+
+t0="$(ts)"
+set_opt=()
+[ "$set_label" != "latest" ] && set_opt=(--set="$set_label")
+pgbackrest --stanza="$stanza" --pg1-path="$work/pgdata" --reset-pg1-host --type=immediate --target-action=promote \
+    --archive-mode=off "${set_opt[@]}" restore >/dev/null
+t1="$(ts)"
+
+"$bin/pg_ctl" -D "$work/pgdata" -l "$work/postgres.log" -w -t 600 \
+    -o "-c port=$port -c listen_addresses='' -c unix_socket_directories='$work/run' -c synchronous_standby_names='' -c shared_preload_libraries='pg_stat_statements' -c hba_file='$work/pgdata/pg_hba.conf' -c ssl=off -c cron.database_name=postgres" \
+    start >/dev/null
+
+for _ in $(seq 1 300); do
+    if [ "$("$bin/psql" -h "$work/run" -p "$port" -U postgres -d postgres -Atqc 'select pg_is_in_recovery()' 2>/dev/null)" = "f" ]; then
+        break
+    fi
+    sleep 1
+done
+t2="$(ts)"
+
+q() { "$bin/psql" -h "$work/run" -p "$port" -U postgres -d ledgercore -X -Atq -c "$1"; }
+violations="$(q 'select count(*) from verify_ledger_integrity()')"
+txn="$(q 'select count(*) from transactions')"
+entries="$(q 'select count(*) from ledger_entries')"
+unbalanced="$(q "select count(*) from (select currency, sum(case when e.direction = 'DEBIT' then e.amount else 0 end) d, sum(case when e.direction = 'CREDIT' then e.amount else 0 end) c from ledger_entries e join accounts a on a.id = e.account_id group by currency) x where d <> c")"
+checksum_failures="$(q 'select coalesce(sum(checksum_failures), 0) from pg_stat_database')"
+backup_label="$(pgbackrest --stanza="$stanza" info | grep -Eo '[0-9]{8}-[0-9]{6}F(_[0-9]{8}-[0-9]{6}[DI])?' | tail -n 1 || echo unknown)"
+
+"$bin/pg_ctl" -D "$work/pgdata" -m fast -w stop >/dev/null
+find "$work" -mindepth 1 -delete
+
+ok=true
+[ "$violations" = "0" ] && [ "$unbalanced" = "0" ] && [ "$checksum_failures" = "0" ] || ok=false
+line="$(printf '{"at":"%s","backup":"%s","restore_s":%.1f,"recovery_s":%.1f,"transactions":%s,"entries":%s,"integrity_violations":%s,"unbalanced_currencies":%s,"checksum_failures":%s,"ok":%s}' \
+    "$(date -Iseconds)" "$backup_label" "$(awk "BEGIN{print $t1 - $t0}")" "$(awk "BEGIN{print $t2 - $t1}")" "$txn" "$entries" "$violations" "$unbalanced" "$checksum_failures" "$ok")"
+echo "$line" >> "$history"
+echo "$line"
+[ "$ok" = "true" ]

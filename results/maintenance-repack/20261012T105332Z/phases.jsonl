@@ -1,0 +1,2 @@
+{"phase": "vacuum-full", "acked": 1779, "gave_up": 0, "failed_attempts": 23, "throughput_per_s": 19.8, "p50_ms": 11.2, "p95_ms": 30.0, "p99_ms": 2079.2, "max_ms": 3075.8, "slow_over_4s": 0}
+{"phase": "pg-repack", "acked": 1801, "gave_up": 0, "failed_attempts": 0, "throughput_per_s": 20.0, "p50_ms": 11.4, "p95_ms": 355.4, "p99_ms": 835.5, "max_ms": 1779.9, "slow_over_4s": 0}
