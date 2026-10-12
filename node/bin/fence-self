@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+. /usr/local/bin/lab-common.sh
+
+role="$(local_role)"
+if [ "$role" != "primary" ]; then
+    exit 0
+fi
+log "FENCING: lost every child node; switching to read-only and terminating client sessions"
+local_psql -d postgres -c "ALTER SYSTEM SET default_transaction_read_only = on" -c "SELECT pg_reload_conf()" >/dev/null
+sleep 0.5
+local_psql -d postgres -Atc "
+select count(pg_terminate_backend(pid))
+from pg_stat_activity
+where backend_type = 'client backend'
+  and pid <> pg_backend_pid()
+  and usename not in ('repmgr', 'postgres')" >/dev/null
+record_event "fenced_self_read_only"

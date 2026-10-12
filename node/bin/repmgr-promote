@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+. /usr/local/bin/lab-common.sh
+
+record_event "promote_requested"
+repmgr_cmd standby promote --log-to-file
+rc=$?
+if [ $rc -eq 0 ]; then
+    local_psql -d postgres -c "ALTER SYSTEM RESET default_transaction_read_only" -c "SELECT pg_reload_conf()" >/dev/null 2>&1 || true
+    record_event "promoted"
+fi
+exit $rc
