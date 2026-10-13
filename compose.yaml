@@ -18,6 +18,14 @@ x-pg-env: &pg-env
   LEDGER_RO_PASSWORD: ${LEDGER_RO_PASSWORD:?run lab init first}
   PGMONITOR_PASSWORD: ${PGMONITOR_PASSWORD:?run lab init first}
 
+x-db-hosts: &db-hosts
+  pg1-db: 172.30.1.11
+  pg2-db: 172.30.1.12
+  pg3-db: 172.30.1.13
+  witness-db: 172.30.1.14
+  pg18-db: 172.30.1.18
+  backup-db: 172.30.1.20
+
 x-pg-node: &pg-node
   image: pglab/pg:local
   build: *pg-build
@@ -50,7 +58,8 @@ services:
     container_name: pglab-pg1
     hostname: pg1
     extra_hosts:
-      - "pg1-db:127.0.0.1"
+      <<: *db-hosts
+      pg1-db: 127.0.0.1
     environment:
       <<: *pg-env
       NODE_NAME: pg1
@@ -65,6 +74,7 @@ services:
     networks:
       db:
         aliases: [pg1-db]
+        ipv4_address: 172.30.1.11
       app: {}
 
   pg2:
@@ -72,7 +82,8 @@ services:
     container_name: pglab-pg2
     hostname: pg2
     extra_hosts:
-      - "pg2-db:127.0.0.1"
+      <<: *db-hosts
+      pg2-db: 127.0.0.1
     environment:
       <<: *pg-env
       NODE_NAME: pg2
@@ -87,6 +98,7 @@ services:
     networks:
       db:
         aliases: [pg2-db]
+        ipv4_address: 172.30.1.12
       app: {}
 
   pg3:
@@ -94,7 +106,8 @@ services:
     container_name: pglab-pg3
     hostname: pg3
     extra_hosts:
-      - "pg3-db:127.0.0.1"
+      <<: *db-hosts
+      pg3-db: 127.0.0.1
     environment:
       <<: *pg-env
       NODE_NAME: pg3
@@ -109,6 +122,7 @@ services:
     networks:
       db:
         aliases: [pg3-db]
+        ipv4_address: 172.30.1.13
       app: {}
 
   witness:
@@ -116,7 +130,8 @@ services:
     container_name: pglab-witness
     hostname: witness
     extra_hosts:
-      - "witness-db:127.0.0.1"
+      <<: *db-hosts
+      witness-db: 127.0.0.1
     environment:
       <<: *pg-env
       NODE_NAME: witness
@@ -129,13 +144,15 @@ services:
     networks:
       db:
         aliases: [witness-db]
+        ipv4_address: 172.30.1.14
 
   pg18:
     <<: *pg-node
     container_name: pglab-pg18
     hostname: pg18
     extra_hosts:
-      - "pg18-db:127.0.0.1"
+      <<: *db-hosts
+      pg18-db: 127.0.0.1
     profiles: ["upgrade"]
     environment:
       <<: *pg-env
@@ -149,6 +166,7 @@ services:
     networks:
       db:
         aliases: [pg18-db]
+        ipv4_address: 172.30.1.18
       app: {}
 
   backup:
@@ -157,6 +175,7 @@ services:
     container_name: pglab-backup
     hostname: backup
     restart: unless-stopped
+    extra_hosts: *db-hosts
     depends_on:
       certs:
         condition: service_completed_successfully
@@ -177,6 +196,7 @@ services:
     networks:
       db:
         aliases: [backup-db]
+        ipv4_address: 172.30.1.20
 
   haproxy:
     image: ${HAPROXY_IMAGE:-haproxy:3.0}
@@ -265,6 +285,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./results:/lab/results
       - certs:/certs:ro
+    extra_hosts: *db-hosts
     networks:
       db: {}
       app: {}
@@ -275,6 +296,7 @@ networks:
     ipam:
       config:
         - subnet: 172.30.1.0/24
+          ip_range: 172.30.1.128/25
   app:
     name: pglab_app
     ipam:
