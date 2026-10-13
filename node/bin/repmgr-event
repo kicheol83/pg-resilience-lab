@@ -13,5 +13,10 @@ case "$event" in
             /usr/local/bin/unfence-self
         fi
         ;;
+    standby_promote)
+        if [ "$success" = "1" ]; then
+            setsid /usr/local/bin/wal-backfill >> /var/log/repmgr/wal-backfill.log 2>&1 < /dev/null &
+        fi
+        ;;
 esac
 exit 0

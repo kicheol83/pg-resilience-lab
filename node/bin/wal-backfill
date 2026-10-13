@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+. /usr/local/bin/lab-common.sh
+
+push_segment() {
+    local file="$1" attempt
+    for attempt in 1 2 3 4 5; do
+        if as_pg pgbackrest --stanza="$LAB_STANZA" --no-archive-async archive-push "$PGDATA/pg_wal/$file" >/dev/null 2>&1; then
+            return 0
+        fi
+        sleep 1
+    done
+    return 1
+}
+
+for attempt in $(seq 1 30); do
+    current="$(local_psql -d postgres -Atc "select case when pg_is_in_recovery() then '' else pg_walfile_name(pg_current_wal_lsn()) end" 2>/dev/null)"
+    [ -n "$current" ] && break
+    sleep 1
+done
+[ -n "$current" ] || { log "wal backfill skipped: this node is not a writable primary"; exit 0; }
+
+timeline="${current:0:8}"
+ok=0
+failed=0
+for file in $(ls "$PGDATA/pg_wal" | grep -E '^[0-9A-F]{24}$' | sort); do
+    [[ "${file:0:8}" < "$timeline" ]] || continue
+    if push_segment "$file"; then
+        ok=$((ok + 1))
+    else
+        failed=$((failed + 1))
+        log "wal backfill could not push $file"
+    fi
+done
+log "wal backfill on timeline $timeline: $ok segment(s) in the archive, $failed failed"
+record_event "wal_backfill:ok=$ok:failed=$failed"

@@ -19,7 +19,7 @@
 | 복제 | `wal_sender_timeout` / `wal_receiver_timeout` | 10s | 끊긴 복제 연결을 기본값(60s)보다 빨리 정리 |
 | 복제 | `synchronous_standby_names` | `ANY 1 (pg1, pg2, pg3)` | ADR-0002 |
 | 네트워크 | `tcp_keepalives_*`, `tcp_user_timeout` | 5s/2s/3회, 10s | 시나리오 10에서 응답 없는 상대에게 막힌 walsender 때문에 fast shutdown이 120초 넘게 멈췄다. 죽은 TCP를 10초 안에 끊는다 |
-| 아카이브 | `archive_mode` / `archive_command` | on / pgBackRest | PITR의 전제. `archive_timeout = 60s`로 한가한 시간에도 최대 1분 단위 RPO |
+| 아카이브 | `archive_mode` / `archive_command` | on / pgBackRest | PITR의 전제. primary가 아직 올리지 못한 WAL과 함께 사라지면 아카이브에 구멍이 생기고 그 구간을 지나는 PITR이 실패했다(시나리오 07 → 09). `always`는 저장소의 아카이브 잠금을 세 노드가 다투게 만들어 첫 전체 백업이 시간 초과로 실패했다. 그래서 `on`을 유지하고, 승격 이벤트에서 새 primary가 pg_wal에 남은 이전 timeline 세그먼트를 다시 올린다(`wal-backfill`, 이미 있는 세그먼트는 체크섬이 같으면 건너뜀). `archive_timeout = 60s`로 한가한 시간에도 최대 1분 단위 RPO |
 | 보안 | `password_encryption` | scram-sha-256 | md5 해시 역할은 로그인할 수 없다(`lab security`에서 확인) |
 | 보안 | `ssl_min_protocol_version` | TLSv1.2 | 클라이언트·복제·pgBackRest 모두 lab CA 인증서로 TLS |
 | 보안 | `credcheck.*` | 16자, 대·소문자·숫자·특수문자 각 1 | 약한 비밀번호 생성 차단 |
