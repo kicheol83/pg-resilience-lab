@@ -27,6 +27,27 @@ find_drop_xid() {
         | grep -m 1 -E 'desc: COMMIT .*rels:' | sed -E 's/.*tx: *([0-9]+),.*/\1/'
 }
 
+pg1_promoted() {
+    [ "$(docker exec "$(cname pg1)" lab-node psql -d postgres -Atc 'select pg_is_in_recovery()' 2>/dev/null)" = "f" ]
+}
+
+pg1_postgres_running() {
+    nexec pg1 bash -c '. /usr/local/bin/lab-common.sh; as_pg "$(pg_bin)/pg_ctl" -D "$PGDATA" status' >/dev/null 2>&1
+}
+
+wait_for_promotion() {
+    local deadline=$(( $(date +%s) + 600 ))
+    until pg1_promoted; do
+        if ! pg1_postgres_running; then
+            ev "pitr_recovery_failed"
+            nexec pg1 tail -n 12 /var/log/postgresql/postgresql.log >&2 || true
+            die "PostgreSQL on pg1 stopped during PITR recovery; see the log lines above"
+        fi
+        [ "$(date +%s)" -lt "$deadline" ] || die "pg1 was not promoted within 600s"
+        sleep 2
+    done
+}
+
 respond() {
     sleep 2
     ev "standby_pg2_table_missing=$(sql_node pg2 -c "select to_regclass('ledger_entries') is null")"
@@ -46,10 +67,11 @@ respond() {
     local t0
     t0="$(ts)"
     nexec pg1 gosu postgres pgbackrest --stanza=ledger --delta --type=xid --target="$DROP_XID" \
-        --target-exclusive --target-action=promote restore
+        --target-exclusive --target-action=promote restore \
+        || { ev "pgbackrest_restore_failed"; die "pgbackrest restore failed on pg1"; }
     ev "pgbackrest_restore_done"
     nexec pg1 lab-node start
-    wait_until 600 bash -c "[ \"\$(docker exec $(cname pg1) lab-node psql -d postgres -Atc 'select pg_is_in_recovery()')\" = 'f' ]"
+    wait_for_promotion
     meta_extra restore_and_recovery_s "$(awk "BEGIN{printf \"%.1f\", $(ts) - $t0}")"
     ev "pg1_recovered_and_promoted"
     nexec pg1 lab-node psql -d postgres \
@@ -61,6 +83,8 @@ respond() {
     nexec pg1 lab-node repmgr primary register -F >/dev/null 2>&1
     nexec pg1 lab-node resume-repmgrd
     ev "entries_after_restore=$(sql_node pg1 -c 'select count(*) from ledger_entries')"
+    nexec backup gosu postgres pgbackrest --stanza=ledger --type=full backup >/dev/null
+    ev "post_restore_full_backup_done"
 
     for n in pg2 pg3; do
         if nexec "$n" gosu postgres pgbackrest --stanza=ledger --delta --type=standby --target-timeline=latest restore >/dev/null 2>&1 \
@@ -84,6 +108,4 @@ heal() {
     p="$(current_primary || echo pg1)"
     [ "$(sql_node "$p" -c "select to_regclass('ledger_entries') is not null")" = "t" ] \
         || die "ledger_entries is still missing; the PITR step failed. Run 'lab reset' before continuing."
-    nexec backup gosu postgres pgbackrest --stanza=ledger --type=full backup >/dev/null
-    ev "post_restore_full_backup_done"
 }
