@@ -1,0 +1,7 @@
+(as seen from witness)
+ ID | Name    | Role    | Status    | Upstream | Location  | Prio. | TLI
+----+---------+---------+-----------+----------+-----------+-------+-----
+ 1  | pg1     | primary | * running |          | seoul-lab | 100   | 5   
+ 2  | pg2     | standby |   running | pg1      | seoul-lab | 90    | 6   
+ 3  | pg3     | standby |   running | pg1      | seoul-lab | 80    | 4   
+ 4  | witness | witness | * running | pg1      | seoul-lab | 0     | n/a 

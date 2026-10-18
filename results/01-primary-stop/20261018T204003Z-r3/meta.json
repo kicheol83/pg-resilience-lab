@@ -1,0 +1,10 @@
+{
+  "scenario": "01-primary-stop",
+  "title": "Primary PostgreSQL stopped (pg_ctl stop -m fast)",
+  "run_id": "01-primary-stop-20261018T204003Z-r3",
+  "started_at": "2026-10-18T20:40:03.996Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 3,
+  "extra": {}
+}

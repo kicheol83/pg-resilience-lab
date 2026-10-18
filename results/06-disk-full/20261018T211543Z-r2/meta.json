@@ -1,0 +1,12 @@
+{
+  "scenario": "06-disk-full",
+  "title": "Primary WAL volume runs out of space",
+  "run_id": "06-disk-full-20261018T211543Z-r2",
+  "started_at": "2026-10-18T21:15:43.916Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 2,
+  "extra": {
+    "wal_fs_free_mb_before": "128"
+  }
+}

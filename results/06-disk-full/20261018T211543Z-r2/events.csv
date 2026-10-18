@@ -1,0 +1,45 @@
+1792358144.172,workload_start
+1792358144.406,node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected
+1792358165.186,inject
+1792358165.367,ballast_written_headroom_24MB
+1792358166.683,bulk_write_attempted
+1792358166.808,pg1_role_down
+1792358166.915,node:pg1:repmgr:repmgrd_local_disconnect:success=1:node=1:unable to connect to local node
+1792358167.100,node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node "pg1" (ID: 1)
+1792358167.114,node:pg2:repmgr:repmgrd_upstream_disconnect:success=1:node=2:unable to connect to upstream node "pg1" (ID: 1)
+1792358167.576,node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node "pg1" (ID: 1)
+1792358170.216,node:pg2:promote_requested
+1792358171.290,node:pg2:repmgr:standby_promote:success=1:node=2:server "pg2" (ID: 2) was successfully promoted to primary
+1792358171.307,node:pg2:promoted
+1792358171.350,node:pg2:repmgr:repmgrd_failover_promote:success=1:node=2:node "pg2" (ID: 2) promoted to primary; old primary "pg1" (ID: 1) marked as failed
+1792358171.365,node:pg2:repmgr:repmgrd_reload:success=1:node=2:monitoring cluster primary "pg2" (ID: 2)
+1792358171.851,node:pg3:repmgr:standby_follow:success=1:node=3:standby attached to upstream node "pg2" (ID: 2)
+1792358171.874,node:pg3:repmgr:repmgrd_failover_follow:success=1:node=3:node "pg3" (ID: 3) now following new upstream node "pg2" (ID: 2)
+1792358172.155,node:witness:repmgr:repmgrd_failover_follow:success=1:node=4:witness node "witness" (ID: 4) now following new primary node "pg2" (ID: 2)
+1792358172.297,node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node "pg2" (ID: 2)
+1792358173.231,write_probe_ok
+1792358173.387,primary_now_pg2
+1792358173.432,node:pg2:repmgr:child_node_new_connect:success=1:node=2:new witness "witness" (ID: 4) has connected
+1792358173.971,node:pg2:wal_backfill:ok=41:failed=0
+1792358294.770,workload_done
+1792358296.742,node:pg1:repmgr:standby_clone:success=1:node=1:cloned from host "pg2-db", port 5432; backup method: pg_basebackup; --force: Y
+1792358296.940,node:pg1:repmgr:standby_register:success=1:node=1:standby registration succeeded; upstream node ID is 2 (-F/--force option was used)
+1792358296.951,node:pg1:repmgr:standby_register_sync:success=1:node=1:node record synchronised after 0 seconds
+1792358296.956,node:pg1:cloned_from_pg2
+1792358296.969,pg1_rebuilt_with_wal_back_in_pgdata
+1792358297.473,node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring connection to upstream node "pg2" (ID: 2)
+1792358298.285,node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby "pg1" (ID: 1) has connected
+1792358300.321,node:pg2:repmgr:repmgrd_local_disconnect:success=1:node=2:unable to connect to local node
+1792358300.511,node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node "pg2" (ID: 2)
+1792358300.570,node:pg1:repmgr:repmgrd_upstream_disconnect:success=1:node=1:unable to connect to upstream node "pg2" (ID: 2)
+1792358300.594,node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node "pg2" (ID: 2)
+1792358301.239,node:pg1:repmgr:standby_promote:success=1:node=1:server "pg1" (ID: 1) was successfully promoted to primary
+1792358301.338,node:pg1:wal_backfill:ok=2:failed=0
+1792358301.616,node:pg1:repmgr:standby_switchover:success=1:node=1:node "pg1" (ID: 1) promoted to primary, node "pg2" (ID: 2) demoted to standby
+1792358301.644,node:pg1:repmgr:repmgrd_reload:success=1:node=1:monitoring cluster primary "pg1" (ID: 1)
+1792358302.348,node:pg2:repmgr:repmgrd_local_reconnect:success=1:node=2:reconnected to local node after 2 seconds
+1792358302.371,node:pg2:repmgr:repmgrd_standby_reconnect:success=1:node=2:node has become a standby, monitoring connection to upstream node 1
+1792358303.229,node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node "pg1" (ID: 1)
+1792358303.727,node:pg1:repmgr:child_node_new_connect:success=1:node=1:new standby "pg3" (ID: 3) has connected
+1792358303.803,node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected
+1792358303.848,healed

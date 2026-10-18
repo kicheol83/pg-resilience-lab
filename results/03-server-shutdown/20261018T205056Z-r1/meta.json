@@ -1,0 +1,10 @@
+{
+  "scenario": "03-server-shutdown",
+  "title": "Primary server shut down (docker stop)",
+  "run_id": "03-server-shutdown-20261018T205056Z-r1",
+  "started_at": "2026-10-18T20:50:56.761Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 1,
+  "extra": {}
+}

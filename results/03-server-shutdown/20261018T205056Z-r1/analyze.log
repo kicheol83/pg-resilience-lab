@@ -1,0 +1,1 @@
+{"scenario": "03-server-shutdown", "acked": 2701, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 24.19, "rto_from_inject_s": 24.34, "failed_attempts": 9577, "first_error_status": "500"}}

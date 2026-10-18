@@ -1,0 +1,217 @@
+{
+  "scenario": "06-disk-full",
+  "title": "Primary WAL volume runs out of space",
+  "run_id": "06-disk-full-20261018T211248Z-r1",
+  "started_at": "2026-10-18T21:12:48.092Z",
+  "rate_per_s": 20,
+  "logical_transfers": 2944,
+  "acked": 2944,
+  "gave_up": 0,
+  "acked_after_retry": 95,
+  "idempotent_replays": 0,
+  "attempts": 3569,
+  "failed_attempts_total": 625,
+  "max_success_gap_s": 7.65,
+  "latency_ms_p50": 9.1,
+  "latency_ms_p95": 18.2,
+  "latency_ms_p99": 36.6,
+  "outage": {
+    "had_errors": true,
+    "client_gap_s": 7.65,
+    "rto_from_inject_s": 9.03,
+    "failed_attempts": 625,
+    "first_error_status": "500"
+  },
+  "rpo_missing_acked": 0,
+  "duplicate_transfers": 0,
+  "committed_for_run": 2944,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "db_check_error": null,
+  "events": [
+    {
+      "t": -21.01,
+      "event": "workload_start"
+    },
+    {
+      "t": -20.61,
+      "event": "node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary \"pg1\" (ID: 1)"
+    },
+    {
+      "t": -18.53,
+      "event": "node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": 0.0,
+      "event": "inject"
+    },
+    {
+      "t": 0.2,
+      "event": "ballast_written_headroom_24MB"
+    },
+    {
+      "t": 1.45,
+      "event": "bulk_write_attempted"
+    },
+    {
+      "t": 1.57,
+      "event": "pg1_role_down"
+    },
+    {
+      "t": 1.78,
+      "event": "node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 1.79,
+      "event": "node:pg2:repmgr:repmgrd_upstream_disconnect:success=1:node=2:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 1.91,
+      "event": "node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 1.97,
+      "event": "node:pg1:repmgr:repmgrd_local_disconnect:success=1:node=1:unable to connect to local node"
+    },
+    {
+      "t": 4.91,
+      "event": "node:pg2:promote_requested"
+    },
+    {
+      "t": 5.9,
+      "event": "node:witness:repmgr:repmgrd_failover_follow:success=1:node=4:witness node \"witness\" (ID: 4) now following new primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 5.99,
+      "event": "node:pg2:repmgr:standby_promote:success=1:node=2:server \"pg2\" (ID: 2) was successfully promoted to primary"
+    },
+    {
+      "t": 6.02,
+      "event": "node:pg2:promoted"
+    },
+    {
+      "t": 6.07,
+      "event": "node:pg2:repmgr:repmgrd_failover_promote:success=1:node=2:node \"pg2\" (ID: 2) promoted to primary; old primary \"pg1\" (ID: 1) marked as failed"
+    },
+    {
+      "t": 6.1,
+      "event": "node:pg2:repmgr:repmgrd_reload:success=1:node=2:monitoring cluster primary \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 7.06,
+      "event": "node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:reconnected to upstream node \"pg2\" (ID: 2) after 2 seconds, resuming monitoring"
+    },
+    {
+      "t": 7.99,
+      "event": "node:pg2:wal_backfill:ok=43:failed=0"
+    },
+    {
+      "t": 8.34,
+      "event": "node:pg3:repmgr:standby_follow:success=1:node=3:standby attached to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 8.36,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby \"pg3\" (ID: 3) has connected"
+    },
+    {
+      "t": 8.4,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": 8.41,
+      "event": "node:pg3:repmgr:repmgrd_failover_follow:success=1:node=3:node \"pg3\" (ID: 3) now following new upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 9.73,
+      "event": "write_probe_ok"
+    },
+    {
+      "t": 9.83,
+      "event": "primary_now_pg2"
+    },
+    {
+      "t": 129.54,
+      "event": "workload_done"
+    },
+    {
+      "t": 131.51,
+      "event": "node:pg1:repmgr:standby_clone:success=1:node=1:cloned from host \"pg2-db\", port 5432; backup method: pg_basebackup; --force: Y"
+    },
+    {
+      "t": 131.8,
+      "event": "node:pg1:repmgr:standby_register:success=1:node=1:standby registration succeeded; upstream node ID is 2 (-F/--force option was used)"
+    },
+    {
+      "t": 131.81,
+      "event": "node:pg1:repmgr:standby_register_sync:success=1:node=1:node record synchronised after 0 seconds"
+    },
+    {
+      "t": 131.82,
+      "event": "node:pg1:cloned_from_pg2"
+    },
+    {
+      "t": 131.83,
+      "event": "pg1_rebuilt_with_wal_back_in_pgdata"
+    },
+    {
+      "t": 132.28,
+      "event": "node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring connection to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 133.18,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby \"pg1\" (ID: 1) has connected"
+    },
+    {
+      "t": 134.73,
+      "event": "node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 135.24,
+      "event": "node:pg2:repmgr:repmgrd_local_disconnect:success=1:node=2:unable to connect to local node"
+    },
+    {
+      "t": 135.31,
+      "event": "node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 135.36,
+      "event": "node:pg1:repmgr:repmgrd_upstream_disconnect:success=1:node=1:unable to connect to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 136.26,
+      "event": "node:pg1:repmgr:standby_promote:success=1:node=1:server \"pg1\" (ID: 1) was successfully promoted to primary"
+    },
+    {
+      "t": 136.36,
+      "event": "node:pg1:wal_backfill:ok=2:failed=0"
+    },
+    {
+      "t": 136.63,
+      "event": "node:pg1:repmgr:standby_switchover:success=1:node=1:node \"pg1\" (ID: 1) promoted to primary, node \"pg2\" (ID: 2) demoted to standby"
+    },
+    {
+      "t": 137.29,
+      "event": "node:pg2:repmgr:repmgrd_local_reconnect:success=1:node=2:reconnected to local node after 2 seconds"
+    },
+    {
+      "t": 137.31,
+      "event": "node:pg2:repmgr:repmgrd_standby_reconnect:success=1:node=2:node has become a standby, monitoring connection to upstream node 1"
+    },
+    {
+      "t": 137.42,
+      "event": "node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 137.46,
+      "event": "node:pg1:repmgr:repmgrd_reload:success=1:node=1:monitoring cluster primary \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 138.09,
+      "event": "healed"
+    }
+  ],
+  "extra": {
+    "wal_fs_free_mb_before": "128"
+  },
+  "data_safe": true
+}

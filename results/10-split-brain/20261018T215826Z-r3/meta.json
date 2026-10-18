@@ -1,0 +1,10 @@
+{
+  "scenario": "10-split-brain",
+  "title": "Primary cut off from replicas and witness, still reachable by clients",
+  "run_id": "10-split-brain-20261018T215826Z-r3",
+  "started_at": "2026-10-18T21:58:26.822Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 3,
+  "extra": {}
+}

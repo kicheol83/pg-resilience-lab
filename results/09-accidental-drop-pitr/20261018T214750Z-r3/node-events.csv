@@ -1,0 +1,13 @@
+1792360102.853,pg1,repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received
+1792360102.926,pg2,repmgr:repmgrd_shutdown:success=1:node=2:TERM signal received
+1792360103.113,pg3,repmgr:repmgrd_shutdown:success=1:node=3:TERM signal received
+1792360103.250,witness,repmgr:repmgrd_shutdown:success=1:node=4:TERM signal received
+1792360112.175,pg1,repmgr:primary_register:success=1:node=1:existing primary record updated
+1792360121.354,pg2,repmgr:standby_register:success=1:node=2:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792360124.615,pg3,repmgr:standby_register:success=1:node=3:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792360124.909,witness,repmgr:witness_register:success=1:node=4:witness registration succeeded; upstream node ID is 1
+1792360125.401,pg3,repmgr:repmgrd_start:success=1:node=3:monitoring connection to upstream node "pg1" (ID: 1)
+1792360125.514,pg2,repmgr:repmgrd_start:success=1:node=2:monitoring connection to upstream node "pg1" (ID: 1)
+1792360125.588,witness,repmgr:repmgrd_start:success=1:node=4:witness monitoring connection to primary node "pg1" (ID: 1)
+1792360125.801,pg1,repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary "pg1" (ID: 1)
+1792360127.882,pg1,repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected

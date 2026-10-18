@@ -1,0 +1,1 @@
+{"scenario": "09-accidental-drop-pitr", "acked": 4894, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 73.44, "rto_from_inject_s": 73.67, "failed_attempts": 37504, "first_error_status": "500"}}

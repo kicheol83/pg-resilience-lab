@@ -1,0 +1,1 @@
+{"scenario": "01-primary-stop", "acked": 2956, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 6.48, "rto_from_inject_s": 6.59, "failed_attempts": 190, "first_error_status": "500"}}

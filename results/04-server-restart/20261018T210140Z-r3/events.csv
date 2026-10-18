@@ -1,0 +1,15 @@
+1792357300.929,workload_start
+1792357321.947,inject
+1792357322.001,node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received
+1792357322.541,node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node "pg1" (ID: 1)
+1792357323.307,pg1_container_restarted
+1792357323.557,node:pg1:node_ready
+1792357323.602,node:pg3:repmgr:repmgrd_upstream_reconnect:success=1:node=3:reconnected to upstream node after 1 seconds
+1792357324.406,pg1_after_restart_primary
+1792357327.793,node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary "pg1" (ID: 1)
+1792357328.959,write_probe_ok
+1792357329.016,primary_now_pg1
+1792357330.013,node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected
+1792357330.557,node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node "pg1" (ID: 1)
+1792357451.516,workload_done
+1792357452.957,healed

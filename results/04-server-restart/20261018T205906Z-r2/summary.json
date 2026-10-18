@@ -1,0 +1,107 @@
+{
+  "scenario": "04-server-restart",
+  "title": "Primary server restarted (docker restart)",
+  "run_id": "04-server-restart-20261018T205906Z-r2",
+  "started_at": "2026-10-18T20:59:06.048Z",
+  "rate_per_s": 20,
+  "logical_transfers": 2952,
+  "acked": 2952,
+  "gave_up": 0,
+  "acked_after_retry": 85,
+  "idempotent_replays": 0,
+  "attempts": 4236,
+  "failed_attempts_total": 1284,
+  "max_success_gap_s": 6.8,
+  "latency_ms_p50": 9.8,
+  "latency_ms_p95": 19.8,
+  "latency_ms_p99": 30.1,
+  "outage": {
+    "had_errors": true,
+    "client_gap_s": 6.8,
+    "rto_from_inject_s": 6.84,
+    "failed_attempts": 1284,
+    "first_error_status": "500"
+  },
+  "rpo_missing_acked": 0,
+  "duplicate_transfers": 0,
+  "committed_for_run": 2952,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "db_check_error": null,
+  "events": [
+    {
+      "t": -21.02,
+      "event": "workload_start"
+    },
+    {
+      "t": 0.0,
+      "event": "inject"
+    },
+    {
+      "t": 0.05,
+      "event": "node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received"
+    },
+    {
+      "t": 0.41,
+      "event": "node:pg2:repmgr:repmgrd_upstream_disconnect:success=1:node=2:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 0.6,
+      "event": "node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 0.69,
+      "event": "node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 1.26,
+      "event": "pg1_container_restarted"
+    },
+    {
+      "t": 1.51,
+      "event": "node:pg1:node_ready"
+    },
+    {
+      "t": 1.66,
+      "event": "node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:reconnected to upstream node after 1 seconds"
+    },
+    {
+      "t": 1.77,
+      "event": "node:pg3:repmgr:repmgrd_upstream_reconnect:success=1:node=3:reconnected to upstream node after 1 seconds"
+    },
+    {
+      "t": 2.36,
+      "event": "pg1_after_restart_primary"
+    },
+    {
+      "t": 2.46,
+      "event": "node:pg2:repmgr:repmgrd_upstream_reconnect:success=1:node=2:reconnected to upstream node after 2 seconds"
+    },
+    {
+      "t": 5.71,
+      "event": "node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 7.46,
+      "event": "write_probe_ok"
+    },
+    {
+      "t": 7.5,
+      "event": "primary_now_pg1"
+    },
+    {
+      "t": 7.93,
+      "event": "node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": 129.66,
+      "event": "workload_done"
+    },
+    {
+      "t": 131.03,
+      "event": "healed"
+    }
+  ],
+  "extra": {},
+  "data_safe": true
+}

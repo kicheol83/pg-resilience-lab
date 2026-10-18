@@ -1,0 +1,175 @@
+{
+  "scenario": "09-accidental-drop-pitr",
+  "title": "Operator drops ledger_entries; recovered with PITR to the transaction before the DROP",
+  "run_id": "09-accidental-drop-pitr-20261018T213738Z-r1",
+  "started_at": "2026-10-18T21:37:38.776Z",
+  "rate_per_s": 20,
+  "logical_transfers": 5660,
+  "acked": 4894,
+  "gave_up": 766,
+  "acked_after_retry": 350,
+  "idempotent_replays": 0,
+  "attempts": 42398,
+  "failed_attempts_total": 37504,
+  "max_success_gap_s": 73.44,
+  "latency_ms_p50": 9.9,
+  "latency_ms_p95": 19.1,
+  "latency_ms_p99": 841.9,
+  "outage": {
+    "had_errors": true,
+    "client_gap_s": 73.44,
+    "rto_from_inject_s": 73.67,
+    "failed_attempts": 37504,
+    "first_error_status": "500"
+  },
+  "rpo_missing_acked": 0,
+  "duplicate_transfers": 0,
+  "committed_for_run": 4894,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "db_check_error": null,
+  "events": [
+    {
+      "t": -21.08,
+      "event": "node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": -21.01,
+      "event": "workload_start"
+    },
+    {
+      "t": 0.0,
+      "event": "inject"
+    },
+    {
+      "t": 0.3,
+      "event": "accident_drop_table_ledger_entries"
+    },
+    {
+      "t": 2.49,
+      "event": "standby_pg2_table_missing=t"
+    },
+    {
+      "t": 2.65,
+      "event": "standby_pg3_table_missing=t"
+    },
+    {
+      "t": 10.66,
+      "event": "incident_detected"
+    },
+    {
+      "t": 10.96,
+      "event": "drop_commit_xid_72227"
+    },
+    {
+      "t": 11.32,
+      "event": "node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received"
+    },
+    {
+      "t": 11.43,
+      "event": "node:pg2:repmgr:repmgrd_shutdown:success=1:node=2:TERM signal received"
+    },
+    {
+      "t": 11.55,
+      "event": "node:pg3:repmgr:repmgrd_shutdown:success=1:node=3:TERM signal received"
+    },
+    {
+      "t": 11.63,
+      "event": "node:witness:repmgr:repmgrd_shutdown:success=1:node=4:TERM signal received"
+    },
+    {
+      "t": 14.85,
+      "event": "cluster_stopped_for_restore"
+    },
+    {
+      "t": 15.71,
+      "event": "pgbackrest_restore_done"
+    },
+    {
+      "t": 60.2,
+      "event": "pg1_recovered_and_promoted"
+    },
+    {
+      "t": 60.33,
+      "event": "recovery_target_settings_removed"
+    },
+    {
+      "t": 60.57,
+      "event": "node:pg1:repmgr:primary_register:success=1:node=1:existing primary record updated"
+    },
+    {
+      "t": 60.85,
+      "event": "entries_after_restore=138318"
+    },
+    {
+      "t": 67.38,
+      "event": "post_restore_full_backup_done"
+    },
+    {
+      "t": 71.95,
+      "event": "node:pg2:repmgr:standby_register:success=1:node=2:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)"
+    },
+    {
+      "t": 71.99,
+      "event": "pg2_reseeded_by_pgbackrest_delta"
+    },
+    {
+      "t": 74.16,
+      "event": "node:pg2:repmgr:repmgrd_start:success=1:node=2:monitoring connection to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 75.92,
+      "event": "node:pg3:repmgr:standby_register:success=1:node=3:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)"
+    },
+    {
+      "t": 75.94,
+      "event": "pg3_reseeded_by_pgbackrest_delta"
+    },
+    {
+      "t": 76.41,
+      "event": "node:witness:repmgr:witness_register:success=1:node=4:witness registration succeeded; upstream node ID is 1"
+    },
+    {
+      "t": 76.51,
+      "event": "cluster_rebuilt_on_new_timeline"
+    },
+    {
+      "t": 76.53,
+      "event": "write_probe_ok"
+    },
+    {
+      "t": 76.58,
+      "event": "primary_now_pg1"
+    },
+    {
+      "t": 77.99,
+      "event": "node:pg3:repmgr:repmgrd_start:success=1:node=3:monitoring connection to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 78.01,
+      "event": "node:witness:repmgr:repmgrd_start:success=1:node=4:witness monitoring connection to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 78.97,
+      "event": "node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 81.06,
+      "event": "node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": 279.58,
+      "event": "workload_done"
+    },
+    {
+      "t": 280.96,
+      "event": "healed"
+    }
+  ],
+  "extra": {
+    "lsn_before": "0/6F5B46D0",
+    "drop_xid": "72227",
+    "restore_and_recovery_s": "45.3"
+  },
+  "data_safe": true
+}

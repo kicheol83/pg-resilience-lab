@@ -1,0 +1,191 @@
+{
+  "scenario": "01-primary-stop",
+  "title": "Primary PostgreSQL stopped (pg_ctl stop -m fast)",
+  "run_id": "01-primary-stop-20261018T203721Z-r2",
+  "started_at": "2026-10-18T20:37:21.900Z",
+  "rate_per_s": 20,
+  "logical_transfers": 2946,
+  "acked": 2946,
+  "gave_up": 0,
+  "acked_after_retry": 92,
+  "idempotent_replays": 0,
+  "attempts": 3459,
+  "failed_attempts_total": 513,
+  "max_success_gap_s": 7.47,
+  "latency_ms_p50": 9.5,
+  "latency_ms_p95": 17.1,
+  "latency_ms_p99": 32.2,
+  "outage": {
+    "had_errors": true,
+    "client_gap_s": 7.47,
+    "rto_from_inject_s": 7.57,
+    "failed_attempts": 513,
+    "first_error_status": "500"
+  },
+  "rpo_missing_acked": 0,
+  "duplicate_transfers": 0,
+  "committed_for_run": 2946,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "db_check_error": null,
+  "events": [
+    {
+      "t": -21.01,
+      "event": "workload_start"
+    },
+    {
+      "t": 0.0,
+      "event": "inject"
+    },
+    {
+      "t": 0.62,
+      "event": "node:pg1:repmgr:repmgrd_local_disconnect:success=1:node=1:unable to connect to local node"
+    },
+    {
+      "t": 0.69,
+      "event": "node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 0.7,
+      "event": "node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 0.99,
+      "event": "node:pg2:repmgr:repmgrd_upstream_disconnect:success=1:node=2:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 4.08,
+      "event": "node:pg2:promote_requested"
+    },
+    {
+      "t": 5.14,
+      "event": "node:pg2:repmgr:standby_promote:success=1:node=2:server \"pg2\" (ID: 2) was successfully promoted to primary"
+    },
+    {
+      "t": 5.16,
+      "event": "node:pg2:promoted"
+    },
+    {
+      "t": 5.2,
+      "event": "node:pg2:repmgr:repmgrd_failover_promote:success=1:node=2:node \"pg2\" (ID: 2) promoted to primary; old primary \"pg1\" (ID: 1) marked as failed"
+    },
+    {
+      "t": 5.21,
+      "event": "node:pg2:repmgr:repmgrd_reload:success=1:node=2:monitoring cluster primary \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 5.74,
+      "event": "node:pg2:wal_backfill:ok=15:failed=0"
+    },
+    {
+      "t": 5.74,
+      "event": "node:witness:repmgr:repmgrd_failover_follow:success=1:node=4:witness node \"witness\" (ID: 4) now following new primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 5.76,
+      "event": "node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 6.98,
+      "event": "node:pg3:repmgr:standby_follow:success=1:node=3:standby attached to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 7.04,
+      "event": "node:pg3:repmgr:repmgrd_failover_follow:success=1:node=3:node \"pg3\" (ID: 3) now following new upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 7.35,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": 7.6,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby \"pg3\" (ID: 3) has connected"
+    },
+    {
+      "t": 7.95,
+      "event": "write_probe_ok"
+    },
+    {
+      "t": 8.05,
+      "event": "primary_now_pg2"
+    },
+    {
+      "t": 129.62,
+      "event": "workload_done"
+    },
+    {
+      "t": 131.61,
+      "event": "node:pg1:repmgr:node_rejoin:success=1:node=1:node 1 is now attached to node 2"
+    },
+    {
+      "t": 131.61,
+      "event": "node:pg1:rejoined_to_pg2"
+    },
+    {
+      "t": 132.24,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby \"pg1\" (ID: 1) has connected"
+    },
+    {
+      "t": 132.51,
+      "event": "node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring connection to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 134.01,
+      "event": "node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 134.3,
+      "event": "node:pg2:repmgr:repmgrd_local_disconnect:success=1:node=2:unable to connect to local node"
+    },
+    {
+      "t": 134.51,
+      "event": "node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 134.58,
+      "event": "node:pg1:repmgr:repmgrd_upstream_disconnect:success=1:node=1:unable to connect to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 135.83,
+      "event": "node:pg1:repmgr:standby_promote:success=1:node=1:server \"pg1\" (ID: 1) was successfully promoted to primary"
+    },
+    {
+      "t": 136.31,
+      "event": "node:pg1:repmgr:standby_switchover:success=1:node=1:node \"pg1\" (ID: 1) promoted to primary, node \"pg2\" (ID: 2) demoted to standby"
+    },
+    {
+      "t": 136.35,
+      "event": "node:pg2:repmgr:repmgrd_local_reconnect:success=1:node=2:reconnected to local node after 2 seconds"
+    },
+    {
+      "t": 136.38,
+      "event": "node:pg2:repmgr:repmgrd_standby_reconnect:success=1:node=2:node has become a standby, monitoring connection to upstream node 1"
+    },
+    {
+      "t": 136.71,
+      "event": "node:pg1:repmgr:repmgrd_reload:success=1:node=1:monitoring cluster primary \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 137.0,
+      "event": "node:pg1:wal_backfill:ok=21:failed=0"
+    },
+    {
+      "t": 138.09,
+      "event": "node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 138.76,
+      "event": "healed"
+    },
+    {
+      "t": 138.78,
+      "event": "node:pg1:repmgr:child_node_new_connect:success=1:node=1:new standby \"pg3\" (ID: 3) has connected"
+    },
+    {
+      "t": 138.83,
+      "event": "node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness \"witness\" (ID: 4) has connected"
+    }
+  ],
+  "extra": {},
+  "data_safe": true
+}

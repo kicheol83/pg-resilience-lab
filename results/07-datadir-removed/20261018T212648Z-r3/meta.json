@@ -1,0 +1,10 @@
+{
+  "scenario": "07-datadir-removed",
+  "title": "Primary data directory deleted while running",
+  "run_id": "07-datadir-removed-20261018T212648Z-r3",
+  "started_at": "2026-10-18T21:26:48.369Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 3,
+  "extra": {}
+}

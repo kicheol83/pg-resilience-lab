@@ -1,0 +1,1 @@
+{"scenario": "04-server-restart", "acked": 2956, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 6.51, "rto_from_inject_s": 6.58, "failed_attempts": 1183, "first_error_status": "500"}}

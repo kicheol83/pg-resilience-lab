@@ -1,0 +1,34 @@
+1792359458.943,node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected
+1792359459.013,workload_start
+1792359480.024,inject
+1792359480.324,accident_drop_table_ledger_entries
+1792359482.510,standby_pg2_table_missing=t
+1792359482.672,standby_pg3_table_missing=t
+1792359490.680,incident_detected
+1792359490.988,drop_commit_xid_72227
+1792359491.344,node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received
+1792359491.454,node:pg2:repmgr:repmgrd_shutdown:success=1:node=2:TERM signal received
+1792359491.571,node:pg3:repmgr:repmgrd_shutdown:success=1:node=3:TERM signal received
+1792359491.659,node:witness:repmgr:repmgrd_shutdown:success=1:node=4:TERM signal received
+1792359494.872,cluster_stopped_for_restore
+1792359495.729,pgbackrest_restore_done
+1792359540.219,pg1_recovered_and_promoted
+1792359540.353,recovery_target_settings_removed
+1792359540.590,node:pg1:repmgr:primary_register:success=1:node=1:existing primary record updated
+1792359540.873,entries_after_restore=138318
+1792359547.407,post_restore_full_backup_done
+1792359551.977,node:pg2:repmgr:standby_register:success=1:node=2:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792359552.011,pg2_reseeded_by_pgbackrest_delta
+1792359554.181,node:pg2:repmgr:repmgrd_start:success=1:node=2:monitoring connection to upstream node "pg1" (ID: 1)
+1792359555.947,node:pg3:repmgr:standby_register:success=1:node=3:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792359555.966,pg3_reseeded_by_pgbackrest_delta
+1792359556.436,node:witness:repmgr:witness_register:success=1:node=4:witness registration succeeded; upstream node ID is 1
+1792359556.529,cluster_rebuilt_on_new_timeline
+1792359556.554,write_probe_ok
+1792359556.599,primary_now_pg1
+1792359558.016,node:pg3:repmgr:repmgrd_start:success=1:node=3:monitoring connection to upstream node "pg1" (ID: 1)
+1792359558.030,node:witness:repmgr:repmgrd_start:success=1:node=4:witness monitoring connection to primary node "pg1" (ID: 1)
+1792359558.998,node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary "pg1" (ID: 1)
+1792359561.080,node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected
+1792359759.599,workload_done
+1792359760.988,healed

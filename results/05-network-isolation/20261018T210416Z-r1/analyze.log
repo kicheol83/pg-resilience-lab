@@ -1,0 +1,1 @@
+{"scenario": "05-network-isolation", "acked": 2650, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 27.85, "rto_from_inject_s": 27.91, "failed_attempts": 11231, "first_error_status": "500"}}

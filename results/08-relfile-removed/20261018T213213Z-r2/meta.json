@@ -1,0 +1,12 @@
+{
+  "scenario": "08-relfile-removed",
+  "title": "Primary loses the data file of table accounts",
+  "run_id": "08-relfile-removed-20261018T213213Z-r2",
+  "started_at": "2026-10-18T21:32:13.197Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 2,
+  "extra": {
+    "relation_file": "base/16391/16662"
+  }
+}

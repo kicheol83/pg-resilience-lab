@@ -1,0 +1,1 @@
+{"scenario": "06-disk-full", "acked": 2961, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 5.8, "rto_from_inject_s": 7.21, "failed_attempts": 93, "first_error_status": "500"}}

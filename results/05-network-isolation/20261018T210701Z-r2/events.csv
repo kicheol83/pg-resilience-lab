@@ -1,0 +1,41 @@
+1792357622.051,workload_start
+1792357643.064,inject
+1792357643.581,node:pg1:repmgr:child_node_disconnect:success=1:node=1:witness node "witness" (ID: 4) has disconnected
+1792357645.496,node:pg2:repmgr:repmgrd_upstream_disconnect:success=1:node=2:unable to connect to upstream node "pg1" (ID: 1)
+1792357645.802,node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node "pg1" (ID: 1)
+1792357645.868,node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node "pg1" (ID: 1)
+1792357653.792,node:pg1:repmgr:child_node_disconnect:success=1:node=1:standby node "pg2" (ID: 2) has disconnected
+1792357653.809,node:pg1:repmgr:child_node_disconnect:success=1:node=1:standby node "pg3" (ID: 3) has disconnected
+1792357662.599,node:pg1:fenced_self_read_only
+1792357662.613,node:pg1:repmgr:child_nodes_disconnect_command:success=1:node=1:"child_nodes_disconnect_command" successfully executed
+1792357668.648,node:pg2:promote_requested
+1792357671.844,node:pg2:repmgr:standby_promote:success=1:node=2:server "pg2" (ID: 2) was successfully promoted to primary
+1792357671.894,node:pg2:promoted
+1792357672.156,node:pg2:repmgr:repmgrd_failover_promote:success=1:node=2:node "pg2" (ID: 2) promoted to primary; old primary "pg1" (ID: 1) marked as failed
+1792357672.504,node:pg2:repmgr:repmgrd_reload:success=1:node=2:monitoring cluster primary "pg2" (ID: 2)
+1792357673.108,node:witness:repmgr:repmgrd_failover_follow:success=1:node=4:witness node "witness" (ID: 4) now following new primary node "pg2" (ID: 2)
+1792357673.234,node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node "pg2" (ID: 2)
+1792357674.761,node:pg2:repmgr:child_node_new_connect:success=1:node=2:new witness "witness" (ID: 4) has connected
+1792357674.929,node:pg2:wal_backfill:ok=41:failed=0
+1792357675.316,node:pg3:repmgr:standby_follow:success=1:node=3:standby attached to upstream node "pg2" (ID: 2)
+1792357675.373,node:pg3:repmgr:repmgrd_failover_follow:success=1:node=3:node "pg3" (ID: 3) now following new upstream node "pg2" (ID: 2)
+1792357676.923,node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby "pg3" (ID: 3) has connected
+1792357688.843,network_restored
+1792357691.883,pg1_after_reconnect_fenced
+1792357691.901,write_probe_ok
+1792357691.970,primary_now_pg2
+1792357772.656,workload_done
+1792357773.361,node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received
+1792357776.709,node:pg1:repmgr:node_rejoin:success=1:node=1:node 1 is now attached to node 2
+1792357776.714,node:pg1:rejoined_to_pg2
+1792357777.132,node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby "pg1" (ID: 1) has connected
+1792357779.218,node:pg2:repmgr:repmgrd_local_disconnect:success=1:node=2:unable to connect to local node
+1792357779.986,node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node "pg2" (ID: 2)
+1792357780.135,node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node "pg2" (ID: 2)
+1792357781.022,node:pg1:repmgr:standby_promote:success=1:node=1:server "pg1" (ID: 1) was successfully promoted to primary
+1792357781.373,node:pg1:repmgr:standby_switchover:success=1:node=1:node "pg1" (ID: 1) promoted to primary, node "pg2" (ID: 2) demoted to standby
+1792357782.272,node:pg2:repmgr:repmgrd_local_reconnect:success=1:node=2:reconnected to local node after 3 seconds
+1792357782.299,node:pg2:repmgr:repmgrd_standby_reconnect:success=1:node=2:node has become a standby, monitoring connection to upstream node 1
+1792357782.609,node:pg1:wal_backfill:ok=43:failed=0
+1792357783.022,node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node "pg1" (ID: 1)
+1792357783.619,healed

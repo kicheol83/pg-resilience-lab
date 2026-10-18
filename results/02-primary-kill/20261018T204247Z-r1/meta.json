@@ -1,0 +1,10 @@
+{
+  "scenario": "02-primary-kill",
+  "title": "Primary postmaster killed (kill -9)",
+  "run_id": "02-primary-kill-20261018T204247Z-r1",
+  "started_at": "2026-10-18T20:42:47.199Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 1,
+  "extra": {}
+}

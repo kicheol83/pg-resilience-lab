@@ -1,0 +1,199 @@
+{
+  "scenario": "05-network-isolation",
+  "title": "Primary fully isolated from the network for 45 s",
+  "run_id": "05-network-isolation-20261018T210701Z-r2",
+  "started_at": "2026-10-18T21:07:01.815Z",
+  "rate_per_s": 20,
+  "logical_transfers": 2841,
+  "acked": 2560,
+  "gave_up": 281,
+  "acked_after_retry": 193,
+  "idempotent_replays": 0,
+  "attempts": 17438,
+  "failed_attempts_total": 14878,
+  "max_success_gap_s": 31.96,
+  "latency_ms_p50": 9.7,
+  "latency_ms_p95": 17.9,
+  "latency_ms_p99": 48.3,
+  "outage": {
+    "had_errors": true,
+    "client_gap_s": 31.96,
+    "rto_from_inject_s": 32.03,
+    "failed_attempts": 14878,
+    "first_error_status": "500"
+  },
+  "rpo_missing_acked": 0,
+  "duplicate_transfers": 0,
+  "committed_for_run": 2560,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "db_check_error": null,
+  "events": [
+    {
+      "t": -21.01,
+      "event": "workload_start"
+    },
+    {
+      "t": 0.0,
+      "event": "inject"
+    },
+    {
+      "t": 0.52,
+      "event": "node:pg1:repmgr:child_node_disconnect:success=1:node=1:witness node \"witness\" (ID: 4) has disconnected"
+    },
+    {
+      "t": 2.43,
+      "event": "node:pg2:repmgr:repmgrd_upstream_disconnect:success=1:node=2:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 2.74,
+      "event": "node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 2.8,
+      "event": "node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 10.73,
+      "event": "node:pg1:repmgr:child_node_disconnect:success=1:node=1:standby node \"pg2\" (ID: 2) has disconnected"
+    },
+    {
+      "t": 10.75,
+      "event": "node:pg1:repmgr:child_node_disconnect:success=1:node=1:standby node \"pg3\" (ID: 3) has disconnected"
+    },
+    {
+      "t": 19.54,
+      "event": "node:pg1:fenced_self_read_only"
+    },
+    {
+      "t": 19.55,
+      "event": "node:pg1:repmgr:child_nodes_disconnect_command:success=1:node=1:\"child_nodes_disconnect_command\" successfully executed"
+    },
+    {
+      "t": 25.58,
+      "event": "node:pg2:promote_requested"
+    },
+    {
+      "t": 28.78,
+      "event": "node:pg2:repmgr:standby_promote:success=1:node=2:server \"pg2\" (ID: 2) was successfully promoted to primary"
+    },
+    {
+      "t": 28.83,
+      "event": "node:pg2:promoted"
+    },
+    {
+      "t": 29.09,
+      "event": "node:pg2:repmgr:repmgrd_failover_promote:success=1:node=2:node \"pg2\" (ID: 2) promoted to primary; old primary \"pg1\" (ID: 1) marked as failed"
+    },
+    {
+      "t": 29.44,
+      "event": "node:pg2:repmgr:repmgrd_reload:success=1:node=2:monitoring cluster primary \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 30.04,
+      "event": "node:witness:repmgr:repmgrd_failover_follow:success=1:node=4:witness node \"witness\" (ID: 4) now following new primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 30.17,
+      "event": "node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 31.7,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": 31.87,
+      "event": "node:pg2:wal_backfill:ok=41:failed=0"
+    },
+    {
+      "t": 32.25,
+      "event": "node:pg3:repmgr:standby_follow:success=1:node=3:standby attached to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 32.31,
+      "event": "node:pg3:repmgr:repmgrd_failover_follow:success=1:node=3:node \"pg3\" (ID: 3) now following new upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 33.86,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby \"pg3\" (ID: 3) has connected"
+    },
+    {
+      "t": 45.78,
+      "event": "network_restored"
+    },
+    {
+      "t": 48.82,
+      "event": "pg1_after_reconnect_fenced"
+    },
+    {
+      "t": 48.84,
+      "event": "write_probe_ok"
+    },
+    {
+      "t": 48.91,
+      "event": "primary_now_pg2"
+    },
+    {
+      "t": 129.59,
+      "event": "workload_done"
+    },
+    {
+      "t": 130.3,
+      "event": "node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received"
+    },
+    {
+      "t": 133.65,
+      "event": "node:pg1:repmgr:node_rejoin:success=1:node=1:node 1 is now attached to node 2"
+    },
+    {
+      "t": 133.65,
+      "event": "node:pg1:rejoined_to_pg2"
+    },
+    {
+      "t": 134.07,
+      "event": "node:pg2:repmgr:child_node_new_connect:success=1:node=2:new standby \"pg1\" (ID: 1) has connected"
+    },
+    {
+      "t": 136.15,
+      "event": "node:pg2:repmgr:repmgrd_local_disconnect:success=1:node=2:unable to connect to local node"
+    },
+    {
+      "t": 136.92,
+      "event": "node:witness:repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 137.07,
+      "event": "node:pg3:repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node \"pg2\" (ID: 2)"
+    },
+    {
+      "t": 137.96,
+      "event": "node:pg1:repmgr:standby_promote:success=1:node=1:server \"pg1\" (ID: 1) was successfully promoted to primary"
+    },
+    {
+      "t": 138.31,
+      "event": "node:pg1:repmgr:standby_switchover:success=1:node=1:node \"pg1\" (ID: 1) promoted to primary, node \"pg2\" (ID: 2) demoted to standby"
+    },
+    {
+      "t": 139.21,
+      "event": "node:pg2:repmgr:repmgrd_local_reconnect:success=1:node=2:reconnected to local node after 3 seconds"
+    },
+    {
+      "t": 139.24,
+      "event": "node:pg2:repmgr:repmgrd_standby_reconnect:success=1:node=2:node has become a standby, monitoring connection to upstream node 1"
+    },
+    {
+      "t": 139.55,
+      "event": "node:pg1:wal_backfill:ok=43:failed=0"
+    },
+    {
+      "t": 139.96,
+      "event": "node:witness:repmgr:repmgrd_upstream_reconnect:success=1:node=4:witness monitoring connection to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 140.56,
+      "event": "healed"
+    }
+  ],
+  "extra": {},
+  "data_safe": true
+}

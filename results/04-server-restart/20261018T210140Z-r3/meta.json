@@ -1,0 +1,10 @@
+{
+  "scenario": "04-server-restart",
+  "title": "Primary server restarted (docker restart)",
+  "run_id": "04-server-restart-20261018T210140Z-r3",
+  "started_at": "2026-10-18T21:01:40.680Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 3,
+  "extra": {}
+}

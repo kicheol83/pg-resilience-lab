@@ -1,0 +1,14 @@
+{
+  "scenario": "09-accidental-drop-pitr",
+  "title": "Operator drops ledger_entries; recovered with PITR to the transaction before the DROP",
+  "run_id": "09-accidental-drop-pitr-20261018T213738Z-r1",
+  "started_at": "2026-10-18T21:37:38.776Z",
+  "rate": 20,
+  "duration": "300s",
+  "run": 1,
+  "extra": {
+    "lsn_before": "0/6F5B46D0",
+    "drop_xid": "72227",
+    "restore_and_recovery_s": "45.3"
+  }
+}

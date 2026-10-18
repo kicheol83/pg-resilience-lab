@@ -1,0 +1,1 @@
+{"scenario": "07-datadir-removed", "acked": 2532, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 34.15, "rto_from_inject_s": 35.28, "failed_attempts": 15765, "first_error_status": "500"}}

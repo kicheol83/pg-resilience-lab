@@ -1,0 +1,1 @@
+{"scenario": "02-primary-kill", "acked": 2950, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 7.02, "rto_from_inject_s": 7.07, "failed_attempts": 513, "first_error_status": "500"}}

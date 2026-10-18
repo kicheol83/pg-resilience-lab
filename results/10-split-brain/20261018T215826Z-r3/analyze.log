@@ -1,0 +1,1 @@
+{"scenario": "10-split-brain", "acked": 2637, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 28.17, "rto_from_inject_s": 28.2, "failed_attempts": 11985, "first_error_status": "409"}}

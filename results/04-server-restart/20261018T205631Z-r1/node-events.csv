@@ -1,0 +1,10 @@
+1792357012.778,pg1,repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received
+1792357013.449,pg2,repmgr:repmgrd_upstream_disconnect:success=1:node=2:unable to connect to upstream node "pg1" (ID: 1)
+1792357013.488,pg3,repmgr:repmgrd_upstream_disconnect:success=1:node=3:unable to connect to upstream node "pg1" (ID: 1)
+1792357013.747,witness,repmgr:repmgrd_upstream_disconnect:success=1:node=4:unable to connect to primary node "pg1" (ID: 1)
+1792357014.500,pg2,repmgr:repmgrd_upstream_reconnect:success=1:node=2:reconnected to upstream node after 1 seconds
+1792357014.523,pg1,node_ready
+1792357014.573,pg3,repmgr:repmgrd_upstream_reconnect:success=1:node=3:reconnected to upstream node after 1 seconds
+1792357014.787,witness,repmgr:repmgrd_upstream_reconnect:success=1:node=4:reconnected to upstream node after 1 seconds
+1792357018.782,pg1,repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary "pg1" (ID: 1)
+1792357020.968,pg1,repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected

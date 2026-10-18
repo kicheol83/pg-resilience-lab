@@ -1,0 +1,1 @@
+{"scenario": "08-relfile-removed", "acked": 2942, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 7.91, "rto_from_inject_s": 8.64, "failed_attempts": 837, "first_error_status": "500"}}

@@ -1,0 +1,10 @@
+{
+  "scenario": "05-network-isolation",
+  "title": "Primary fully isolated from the network for 45 s",
+  "run_id": "05-network-isolation-20261018T210701Z-r2",
+  "started_at": "2026-10-18T21:07:01.815Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 2,
+  "extra": {}
+}
