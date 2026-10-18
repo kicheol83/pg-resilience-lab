@@ -26,3 +26,4 @@ repmgr 5.5 + repmgrd를 쓰고, 데이터 노드와 별도로 witness 노드를 
 
 - repmgr에는 DCS 리더 락이 없으므로, split-brain 방어는 동기 복제 quorum(ADR-0002), quorum을 보는 HAProxy 헬스체크(ADR-0003), 자기 격리(ADR-0004)로 보강한다.
 - repmgrd가 로컬 노드에 접속할 때도 `conninfo`의 호스트명(`pgN-db`)을 쓴다. 네트워크가 끊기면 DNS가 실패해 repmgrd가 자기 노드를 못 보는 문제가 시나리오 10에서 드러나, 각 노드의 `/etc/hosts`에 `pgN-db → 127.0.0.1`을 넣었다(`extra_hosts`).
+- 노드 주소를 고정 IP로 바꾼 뒤(실제 서버처럼 죽은 노드의 주소가 남는다) 시나리오 03의 RTO가 50초까지 늘었다. 다른 standby의 WAL receiver가 죽은 primary에 계속 재접속하느라(`tcp_user_timeout` 10초) `standby_disconnect_on_failover`가 `sibling_nodes_disconnect_timeout`(30초)을 다 기다렸기 때문이다. 이 값을 5초로 줄였다. 이전의 짧은 RTO는 Docker DNS가 죽은 컨테이너 이름을 바로 지워서 생긴 lab만의 결과였다.
