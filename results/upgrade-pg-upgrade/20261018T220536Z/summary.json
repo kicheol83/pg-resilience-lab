@@ -1,0 +1,165 @@
+{
+  "scenario": "upgrade-pg-upgrade",
+  "title": "Major upgrade 17 -> 18 with pg_upgrade --link (whole repmgr cluster)",
+  "run_id": "upgrade-1792361136",
+  "started_at": "2026-10-18T22:05:36.731Z",
+  "rate_per_s": 20,
+  "logical_transfers": 2856,
+  "acked": 2730,
+  "gave_up": 126,
+  "acked_after_retry": 174,
+  "idempotent_replays": 0,
+  "attempts": 11264,
+  "failed_attempts_total": 8534,
+  "max_success_gap_s": 22.6,
+  "latency_ms_p50": 10.4,
+  "latency_ms_p95": 19.8,
+  "latency_ms_p99": 365.1,
+  "outage": {
+    "had_errors": true,
+    "client_gap_s": 22.6,
+    "rto_from_inject_s": 22.48,
+    "failed_attempts": 8534,
+    "first_error_status": "500"
+  },
+  "rpo_missing_acked": 0,
+  "duplicate_transfers": 0,
+  "committed_for_run": 2732,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "db_check_error": null,
+  "events": [
+    {
+      "t": -25.06,
+      "event": "pre_upgrade_full_backup_start"
+    },
+    {
+      "t": -22.62,
+      "event": "pre_upgrade_full_backup_done"
+    },
+    {
+      "t": -21.89,
+      "event": "workload_start"
+    },
+    {
+      "t": -0.77,
+      "event": "node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received"
+    },
+    {
+      "t": -0.65,
+      "event": "node:pg2:repmgr:repmgrd_shutdown:success=1:node=2:TERM signal received"
+    },
+    {
+      "t": -0.53,
+      "event": "node:pg3:repmgr:repmgrd_shutdown:success=1:node=3:TERM signal received"
+    },
+    {
+      "t": -0.43,
+      "event": "node:witness:repmgr:repmgrd_shutdown:success=1:node=4:TERM signal received"
+    },
+    {
+      "t": -0.0,
+      "event": "standbys_stopped"
+    },
+    {
+      "t": 0.0,
+      "event": "inject"
+    },
+    {
+      "t": 0.85,
+      "event": "old_primary_stopped"
+    },
+    {
+      "t": 17.14,
+      "event": "pg_upgrade_done"
+    },
+    {
+      "t": 17.62,
+      "event": "new_primary_started_pg18"
+    },
+    {
+      "t": 17.84,
+      "event": "pgbackrest_stanza_upgraded"
+    },
+    {
+      "t": 18.15,
+      "event": "node:pg1:repmgr:primary_register:success=1:node=1:existing primary record updated"
+    },
+    {
+      "t": 20.2,
+      "event": "node:pg2:repmgr:standby_clone:success=1:node=2:cloned from host \"pg1-db\", port 5432; backup method: pg_basebackup; --force: Y"
+    },
+    {
+      "t": 20.67,
+      "event": "node:pg2:repmgr:standby_register:success=1:node=2:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)"
+    },
+    {
+      "t": 20.68,
+      "event": "node:pg2:repmgr:standby_register_sync:success=1:node=2:node record synchronised after 0 seconds"
+    },
+    {
+      "t": 20.69,
+      "event": "node:pg2:cloned_from_pg1"
+    },
+    {
+      "t": 20.71,
+      "event": "pg2_recloned_on_pg18"
+    },
+    {
+      "t": 21.67,
+      "event": "node:pg2:repmgr:repmgrd_start:success=1:node=2:monitoring connection to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 22.67,
+      "event": "node:pg3:repmgr:standby_clone:success=1:node=3:cloned from host \"pg1-db\", port 5432; backup method: pg_basebackup; --force: Y"
+    },
+    {
+      "t": 23.1,
+      "event": "node:pg3:repmgr:standby_register:success=1:node=3:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)"
+    },
+    {
+      "t": 23.14,
+      "event": "node:pg3:repmgr:standby_register_sync:success=1:node=3:node record synchronised after 0 seconds"
+    },
+    {
+      "t": 23.15,
+      "event": "node:pg3:cloned_from_pg1"
+    },
+    {
+      "t": 23.17,
+      "event": "pg3_recloned_on_pg18"
+    },
+    {
+      "t": 25.51,
+      "event": "node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 25.74,
+      "event": "node:pg3:repmgr:repmgrd_start:success=1:node=3:monitoring connection to upstream node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 25.79,
+      "event": "node:witness:repmgr:repmgrd_start:success=1:node=4:witness monitoring connection to primary node \"pg1\" (ID: 1)"
+    },
+    {
+      "t": 27.66,
+      "event": "node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness \"witness\" (ID: 4) has connected"
+    },
+    {
+      "t": 128.91,
+      "event": "workload_done"
+    },
+    {
+      "t": 131.56,
+      "event": "post_upgrade_full_backup_done"
+    },
+    {
+      "t": 132.37,
+      "event": "server_version_18.0"
+    }
+  ],
+  "extra": {
+    "pg_upgrade_s": "16.3"
+  },
+  "data_safe": true
+}

@@ -1,0 +1,32 @@
+1792361136.736,pre_upgrade_full_backup_start
+1792361139.170,pre_upgrade_full_backup_done
+1792361139.902,workload_start
+1792361161.023,node:pg1:repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received
+1792361161.138,node:pg2:repmgr:repmgrd_shutdown:success=1:node=2:TERM signal received
+1792361161.267,node:pg3:repmgr:repmgrd_shutdown:success=1:node=3:TERM signal received
+1792361161.364,node:witness:repmgr:repmgrd_shutdown:success=1:node=4:TERM signal received
+1792361161.790,standbys_stopped
+1792361161.793,inject
+1792361162.639,old_primary_stopped
+1792361178.936,pg_upgrade_done
+1792361179.410,new_primary_started_pg18
+1792361179.636,pgbackrest_stanza_upgraded
+1792361179.944,node:pg1:repmgr:primary_register:success=1:node=1:existing primary record updated
+1792361181.993,node:pg2:repmgr:standby_clone:success=1:node=2:cloned from host "pg1-db", port 5432; backup method: pg_basebackup; --force: Y
+1792361182.466,node:pg2:repmgr:standby_register:success=1:node=2:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792361182.477,node:pg2:repmgr:standby_register_sync:success=1:node=2:node record synchronised after 0 seconds
+1792361182.487,node:pg2:cloned_from_pg1
+1792361182.499,pg2_recloned_on_pg18
+1792361183.467,node:pg2:repmgr:repmgrd_start:success=1:node=2:monitoring connection to upstream node "pg1" (ID: 1)
+1792361184.465,node:pg3:repmgr:standby_clone:success=1:node=3:cloned from host "pg1-db", port 5432; backup method: pg_basebackup; --force: Y
+1792361184.892,node:pg3:repmgr:standby_register:success=1:node=3:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792361184.931,node:pg3:repmgr:standby_register_sync:success=1:node=3:node record synchronised after 0 seconds
+1792361184.947,node:pg3:cloned_from_pg1
+1792361184.966,pg3_recloned_on_pg18
+1792361187.305,node:pg1:repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary "pg1" (ID: 1)
+1792361187.528,node:pg3:repmgr:repmgrd_start:success=1:node=3:monitoring connection to upstream node "pg1" (ID: 1)
+1792361187.581,node:witness:repmgr:repmgrd_start:success=1:node=4:witness monitoring connection to primary node "pg1" (ID: 1)
+1792361189.453,node:pg1:repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected
+1792361290.700,workload_done
+1792361293.351,post_upgrade_full_backup_done
+1792361294.166,server_version_18.0

@@ -1,0 +1,15 @@
+1792360886.422,schema_copy_start
+1792360886.752,schema_copied
+1792360887.023,subscription_created
+1792360887.612,workload_start
+1792360892.518,initial_sync_done
+1792360905.334,inject
+1792360905.339,cutover_start
+1792360906.365,source_read_only
+1792360906.804,subscriber_caught_up
+1792360907.426,row_counts_match
+1792360907.603,sequences_synced
+1792360907.884,subscription_dropped
+1792360907.907,haproxy_points_to_pg18
+1792360908.337,cutover_done
+1792361038.441,workload_done

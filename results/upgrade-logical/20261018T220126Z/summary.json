@@ -1,0 +1,100 @@
+{
+  "scenario": "upgrade-logical",
+  "title": "Major upgrade 17 -> 18 with logical replication and a HAProxy cutover",
+  "run_id": "upgrade-logical-1792360886",
+  "started_at": "2026-10-18T22:01:26.062Z",
+  "rate_per_s": 20,
+  "logical_transfers": 2997,
+  "acked": 2997,
+  "gave_up": 0,
+  "acked_after_retry": 40,
+  "idempotent_replays": 0,
+  "attempts": 3156,
+  "failed_attempts_total": 159,
+  "max_success_gap_s": 2.43,
+  "latency_ms_p50": 10.1,
+  "latency_ms_p95": 19.8,
+  "latency_ms_p99": 45.4,
+  "outage": {
+    "had_errors": true,
+    "client_gap_s": 2.43,
+    "rto_from_inject_s": 2.87,
+    "failed_attempts": 159,
+    "first_error_status": "500"
+  },
+  "rpo_missing_acked": 0,
+  "duplicate_transfers": 0,
+  "committed_for_run": 2997,
+  "integrity_violations": 0,
+  "unbalanced_currencies": 0,
+  "db_check_error": null,
+  "events": [
+    {
+      "t": -18.91,
+      "event": "schema_copy_start"
+    },
+    {
+      "t": -18.58,
+      "event": "schema_copied"
+    },
+    {
+      "t": -18.31,
+      "event": "subscription_created"
+    },
+    {
+      "t": -17.72,
+      "event": "workload_start"
+    },
+    {
+      "t": -12.82,
+      "event": "initial_sync_done"
+    },
+    {
+      "t": 0.0,
+      "event": "inject"
+    },
+    {
+      "t": 0.0,
+      "event": "cutover_start"
+    },
+    {
+      "t": 1.03,
+      "event": "source_read_only"
+    },
+    {
+      "t": 1.47,
+      "event": "subscriber_caught_up"
+    },
+    {
+      "t": 2.09,
+      "event": "row_counts_match"
+    },
+    {
+      "t": 2.27,
+      "event": "sequences_synced"
+    },
+    {
+      "t": 2.55,
+      "event": "subscription_dropped"
+    },
+    {
+      "t": 2.57,
+      "event": "haproxy_points_to_pg18"
+    },
+    {
+      "t": 3.0,
+      "event": "cutover_done"
+    },
+    {
+      "t": 133.11,
+      "event": "workload_done"
+    }
+  ],
+  "extra": {
+    "source_version": "17.7 (Ubuntu 17.7-0ubuntu0.25.04.1)",
+    "target_version": "18.0",
+    "counts_source_at_cutover": "accounts=1243 idempotency_keys=93288 ledger_entries=186576 outbox_events=93288 pgmigrations=7 transactions=93288 users=129 ",
+    "counts_target_at_cutover": "accounts=1243 idempotency_keys=93288 ledger_entries=186576 outbox_events=93288 pgmigrations=7 transactions=93288 users=129 "
+  },
+  "data_safe": true
+}

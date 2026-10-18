@@ -1,0 +1,18 @@
+1792361161.023,pg1,repmgr:repmgrd_shutdown:success=1:node=1:TERM signal received
+1792361161.138,pg2,repmgr:repmgrd_shutdown:success=1:node=2:TERM signal received
+1792361161.267,pg3,repmgr:repmgrd_shutdown:success=1:node=3:TERM signal received
+1792361161.364,witness,repmgr:repmgrd_shutdown:success=1:node=4:TERM signal received
+1792361179.944,pg1,repmgr:primary_register:success=1:node=1:existing primary record updated
+1792361181.993,pg2,repmgr:standby_clone:success=1:node=2:cloned from host "pg1-db", port 5432; backup method: pg_basebackup; --force: Y
+1792361182.466,pg2,repmgr:standby_register:success=1:node=2:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792361182.477,pg2,repmgr:standby_register_sync:success=1:node=2:node record synchronised after 0 seconds
+1792361182.487,pg2,cloned_from_pg1
+1792361183.467,pg2,repmgr:repmgrd_start:success=1:node=2:monitoring connection to upstream node "pg1" (ID: 1)
+1792361184.465,pg3,repmgr:standby_clone:success=1:node=3:cloned from host "pg1-db", port 5432; backup method: pg_basebackup; --force: Y
+1792361184.892,pg3,repmgr:standby_register:success=1:node=3:standby registration succeeded; upstream node ID is 1 (-F/--force option was used)
+1792361184.931,pg3,repmgr:standby_register_sync:success=1:node=3:node record synchronised after 0 seconds
+1792361184.947,pg3,cloned_from_pg1
+1792361187.305,pg1,repmgr:repmgrd_start:success=1:node=1:monitoring cluster primary "pg1" (ID: 1)
+1792361187.528,pg3,repmgr:repmgrd_start:success=1:node=3:monitoring connection to upstream node "pg1" (ID: 1)
+1792361187.581,witness,repmgr:repmgrd_start:success=1:node=4:witness monitoring connection to primary node "pg1" (ID: 1)
+1792361189.453,pg1,repmgr:child_node_new_connect:success=1:node=1:new witness "witness" (ID: 4) has connected

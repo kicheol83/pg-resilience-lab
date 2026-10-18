@@ -1,0 +1,12 @@
+{
+  "scenario": "upgrade-pg-upgrade",
+  "title": "Major upgrade 17 -> 18 with pg_upgrade --link (whole repmgr cluster)",
+  "run_id": "upgrade-1792361136",
+  "started_at": "2026-10-18T22:05:36.731Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 1,
+  "extra": {
+    "pg_upgrade_s": "16.3"
+  }
+}

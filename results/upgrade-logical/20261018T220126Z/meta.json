@@ -1,0 +1,15 @@
+{
+  "scenario": "upgrade-logical",
+  "title": "Major upgrade 17 -> 18 with logical replication and a HAProxy cutover",
+  "run_id": "upgrade-logical-1792360886",
+  "started_at": "2026-10-18T22:01:26.062Z",
+  "rate": 20,
+  "duration": "150s",
+  "run": 1,
+  "extra": {
+    "source_version": "17.7 (Ubuntu 17.7-0ubuntu0.25.04.1)",
+    "target_version": "18.0",
+    "counts_source_at_cutover": "accounts=1243 idempotency_keys=93288 ledger_entries=186576 outbox_events=93288 pgmigrations=7 transactions=93288 users=129 ",
+    "counts_target_at_cutover": "accounts=1243 idempotency_keys=93288 ledger_entries=186576 outbox_events=93288 pgmigrations=7 transactions=93288 users=129 "
+  }
+}

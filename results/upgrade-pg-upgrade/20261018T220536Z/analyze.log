@@ -1,0 +1,1 @@
+{"scenario": "upgrade-pg-upgrade", "acked": 2730, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 22.6, "rto_from_inject_s": 22.48, "failed_attempts": 8534, "first_error_status": "500"}}

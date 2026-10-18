@@ -1,0 +1,1 @@
+{"scenario": "upgrade-logical", "acked": 2997, "rpo_missing_acked": 0, "duplicate_transfers": 0, "integrity_violations": 0, "data_safe": true, "outage": {"had_errors": true, "client_gap_s": 2.43, "rto_from_inject_s": 2.87, "failed_attempts": 159, "first_error_status": "500"}}

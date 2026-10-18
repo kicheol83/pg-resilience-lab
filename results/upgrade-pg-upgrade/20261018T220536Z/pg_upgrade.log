@@ -1,0 +1,66 @@
+Performing Consistency Checks
+-----------------------------
+Checking cluster versions                                     ok
+Checking database connection settings                         ok
+Checking database user is the install user                    ok
+Checking for prepared transactions                            ok
+Checking for contrib/isn with bigint-passing mismatch         ok
+Checking for valid logical replication slots                  ok
+Checking for subscription state                               ok
+Checking data type usage                                      ok
+Checking for objects affected by Unicode update               ok
+Checking for not-null constraint inconsistencies              ok
+Creating dump of global objects                               ok
+Creating dump of database schemas                             ok
+Checking for presence of required libraries                   ok
+Checking database user is the install user                    ok
+Checking for prepared transactions                            ok
+Checking for new cluster tablespace directories               ok
+
+If pg_upgrade fails after this point, you must re-initdb the
+new cluster before continuing.
+
+Performing Upgrade
+------------------
+Setting locale and encoding for new cluster                   ok
+Analyzing all rows in the new cluster                         ok
+Freezing all rows in the new cluster                          ok
+Deleting files from new pg_xact                               ok
+Copying old pg_xact to new server                             ok
+Setting oldest XID for new cluster                            ok
+Setting next transaction ID and epoch for new cluster         ok
+Deleting files from new pg_multixact/offsets                  ok
+Copying old pg_multixact/offsets to new server                ok
+Deleting files from new pg_multixact/members                  ok
+Copying old pg_multixact/members to new server                ok
+Setting next multixact ID and offset for new cluster          ok
+Resetting WAL archives                                        ok
+Setting frozenxid and minmxid counters in new cluster         ok
+Restoring global objects in the new cluster                   ok
+Restoring database schemas in the new cluster                 ok
+Adding ".old" suffix to old "global/pg_control"               ok
+
+If you want to start the old cluster, you will need to remove
+the ".old" suffix from "/var/lib/postgresql/data/pgdata/global/pg_control.old".
+Because "link" mode was used, the old cluster cannot be safely
+started once the new cluster has been started.
+Linking user relation files                                   ok
+Setting next OID for new cluster                              ok
+Sync data directory to disk                                   ok
+Creating script to delete old cluster                         ok
+Checking for extension updates                                notice
+
+Your installation contains extensions that should be updated
+with the ALTER EXTENSION command.  The file
+    update_extensions.sql
+when executed by psql by the database superuser will update
+these extensions.
+
+Upgrade Complete
+----------------
+Some statistics are not transferred by pg_upgrade.
+Once you start the new server, consider running these two commands:
+    /usr/lib/postgresql/18/bin/vacuumdb --all --analyze-in-stages --missing-stats-only
+    /usr/lib/postgresql/18/bin/vacuumdb --all --analyze-only
+Running this script will delete the old cluster's data files:
+    ./delete_old_cluster.sh
